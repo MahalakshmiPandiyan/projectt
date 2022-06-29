@@ -52,4 +52,7 @@ putEvent(eventForm:History,_id:string){
 getUserId(_id:string){
   return this.http.get<any>(this.baseUrl+`/${_id}`);
 }
+deleteUserId(_id: string) {
+  return this.http.delete(this.baseUrl + `/${_id}`);
+}
 }

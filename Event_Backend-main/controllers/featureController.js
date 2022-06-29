@@ -46,9 +46,23 @@ const putFeature= async (req,res)=>{
     });
 };
 
+
+deleteFeature= async (req,res)=>{
+    if(!ObjectId.isValid(req.params.id))
+        return res.status(400).send(`No record with the given id : $(req.params.id)`);
+
+        Feature.findByIdAndRemove(req.params.id,(err,data)=>{
+        if(!err)
+            res.send(data);
+        else
+            console.log('Error in Deleting Data : '+JSON.stringify(err,undefined,2));
+    });
+};
+
 module.exports={
     getAllFeature:getAllFeature,
     postFeature:postFeature,
     putFeature:putFeature,
-    getFeatureById:getFeatureById
+    getFeatureById:getFeatureById,
+    deleteFeature:deleteFeature
 };

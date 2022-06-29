@@ -6,11 +6,7 @@ import { Login } from './login';
   providedIn: 'root'
 })
 export class LoginService {
-  name:string=''
-  passwordValue:string=''
-  emailId:string=''
-  phoneNum:string=''
-  confirmpasswordValue:string=''
+ 
 
   readonly baseUrl='http://localhost:3000/employees';
 
@@ -18,8 +14,8 @@ export class LoginService {
   // postLogin(emp)
   getDetails(userForm:Login){
 
-    console.log("email id: "+userForm.emailId);
-    console.log("name : login "+userForm.phoneNum);
+    console.log("email id: "+userForm.email);
+    console.log("name : login "+userForm.phone);
     
     
     return this.http.post(this.baseUrl,userForm)

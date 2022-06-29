@@ -18,8 +18,20 @@ export class FeaturesComponent implements OnInit {
     this.featureService.getList().subscribe((res)=>{
       this.featuresList=res as Features[]
       console.log(JSON.stringify(res));
+    });
+  }
+
+  delete(_id:string){
+    if (confirm('Are you sure to delete this record ?') == true) {
+    this.featureService.deleteUserId(_id).subscribe((res) => {
+      console.log(res);
       
     });
+    this.featureService.getList().subscribe((res)=>{
+      this.featuresList=res as Features[]
+      console.log(JSON.stringify(res));
+    });
+  }
   }
   back()
   {

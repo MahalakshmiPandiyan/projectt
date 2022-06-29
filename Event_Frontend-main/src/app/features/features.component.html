@@ -1,9 +1,11 @@
 <div class="features">
     <table class="table table-striped">
         <thead>
+            <th>Id</th>
             <th>Name</th>
             <th>Price</th>
             <th>Edit</th>
+            <th>Delete</th>
         </thead>
         <tbody>
             <tr *ngFor="let item of featuresList">
@@ -11,6 +13,8 @@
                 <td>{{item.name}}</td>
                 <td>{{item.amount}}</td>
                 <td><button  class="btn btn-info"  [routerLink]="['/update-add',item._id]">Edit</button></td>
+                <td><button  class="btn btn-danger" (click)="delete(item._id)" >Delete</button></td>
+
             </tr>
         </tbody>
     </table>

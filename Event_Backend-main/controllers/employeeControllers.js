@@ -39,15 +39,14 @@ console.log(req.params.passwordVaule);
 })
 
 
-
 router.post('',(req,res)=>{
     // console.log(emailId);
     var emp=new Employee({
 
         nameValue:req.body.nameValue,
         password:req.body.password,
-        emailId:req.body.emailId,
-        phoneNum:req.body.phoneNum
+        email:req.body.email,
+        phone:req.body.phone
     });
     emp.save((err,doc)=>{
         if(!err){res.send(doc);}
@@ -55,27 +54,27 @@ router.post('',(req,res)=>{
     });
 });
 
-router.put('/:id',(req,res)=>{
-    if(!ObjectId.isValid(req.params.id))
-        return res.status(400).send(`No record with given id : ${req.parmas.id}`);
-    var emp=new Employee({
-        name:req.body.name,
-        password:req.body.password,
-        role:req.body.role
-    });  
-    Employee.findByIdAndUpdate(req.params.id,{$set:emp},{new:true},(err,doc)=>{
-        if(!err){res.send(doc);}
-        else{console.log('error in save : '+ JSON.stringify(err,undefined,2));}
-    });
-});
+// router.put('/:id',(req,res)=>{
+//     if(!ObjectId.isValid(req.params.id))
+//         return res.status(400).send(`No record with given id : ${req.parmas.id}`);
+//     var emp=new Employee({
+//         name:req.body.name,
+//         password:req.body.password,
+//         role:req.body.role
+//     });  
+//     Employee.findByIdAndUpdate(req.params.id,{$set:emp},{new:true},(err,doc)=>{
+//         if(!err){res.send(doc);}
+//         else{console.log('error in save : '+ JSON.stringify(err,undefined,2));}
+//     });
+// });
 
-router.delete('/:id',(req,res)=>{
-    if(!ObjectId.isValid(req.params.id))
-        return res.status(400).send(`No record with given id : ${req.parmas.id}`);
-    Employee.findByIdAndUpdate(req.params.id,(err,doc)=>{
-        if(!err){res.send(doc);}
-        else{console.log('error in delete : '+ JSON.stringify(err,undefined,2));}
-    });
-});
+// router.delete('/:id',(req,res)=>{
+//     if(!ObjectId.isValid(req.params.id))
+//         return res.status(400).send(`No record with given id : ${req.parmas.id}`);
+//     Employee.findByIdAndUpdate(req.params.id,(err,doc)=>{
+//         if(!err){res.send(doc);}
+//         else{console.log('error in delete : '+ JSON.stringify(err,undefined,2));}
+//     });
+// });
 
 module.exports=router;
