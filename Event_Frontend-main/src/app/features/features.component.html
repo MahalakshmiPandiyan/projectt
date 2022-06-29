@@ -1,0 +1,19 @@
+<div class="features">
+    <table class="table table-striped">
+        <thead>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Edit</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of featuresList">
+                <td>{{item._id}}</td>                
+                <td>{{item.name}}</td>
+                <td>{{item.amount}}</td>
+                <td><button  class="btn btn-info"  [routerLink]="['/update-add',item._id]">Edit</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<button  class="back btn btn-secondary" (click)="back()">Back</button>
+<button  class=" add btn btn-success" (click)="addFeatures()">Add Features</button>

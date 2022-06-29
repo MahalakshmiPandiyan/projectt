@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+    <h2>Event Management System</h2>
+    <button class="logout" (click)="logout()">Logout</button>
+</nav>
+
+<ng-container *ngIf="role=='user'">
+    <div class="outer">    
+        <div>
+            <button class="button" (click)="history()">View Booking history</button>
+        </div>
+        <div>
+            <button class="button" (click)="venue()" >View Venue Details</button>
+        </div>
+        <div>
+            <button class="button" (click)="event()">Book Event</button>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="role!='user'">
+    <div class="outer">
+        <div>
+            <button class="button" (click)="history()">View Booking history</button>
+        </div>
+        <div>
+            <button class="button" (click)="organizer()">Assign Organsier</button>
+        </div>
+        <div>
+            <button class="button" (click)="edit()">Edit Features</button>
+        </div>
+    </div>
+</ng-container>

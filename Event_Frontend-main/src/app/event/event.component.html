@@ -1,0 +1,58 @@
+<div class="outer">
+    <div class="boder bg-secondary text-white w-50 p-4">
+        <form  #eventForm="ngForm">
+            <div class="form-group">
+                <label>Event Name</label>
+                <input type="text" #event_name="ngModel" class="form-control" [class.is-invalid]="event_name.invalid && event_name.touched"  name="event_name" [(ngModel)]="list.event_name"required> 
+                <small class="text-danger" [class.d-none]="event_name.valid || event_name.untouched">Event Name is required</small>
+            </div>
+            <div class="form-group">
+                <label>Event Date</label>
+                <!-- <input type="date" min="{{minDate}}"> -->
+                <input type="date" min="{{minDate}}" #event_date="ngModel"  class="form-control" [class.is-invalid]="event_date.invalid && event_date.touched" name="event_date" [(ngModel)]="list.event_date" required>
+                <small class="text-danger" [class.d-none]="event_date.valid || event_date.untouched">Date is required</small>
+            </div>
+            <div class="form-group">
+                <label>Event Timings</label>
+                <input type="text" #event_time="ngModel" class="form-control" [class.is-invalid]="event_time.invalid && event_time.touched" name="event_time" [(ngModel)]="list.event_time"required> 
+                <small class="text-danger" [class.d-none]="event_time.valid || event_time.untouched">Time is required</small>
+            </div>
+            <div class="form-group">
+                <label for="photo">Do you want Photography?</label>
+                <select name="photography" id="photo"  [(ngModel)]="list.photography" required>
+                    <option value="" hidden>Choose yes/no</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+
+            </div>
+            <div class="form-group">
+                <label for="role">Do you want Food?</label>
+                <select name="food" id="food" [(ngModel)]="list.food">
+                    <option value="" hidden>Choose yes/no</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="decoration">Do you want decoration?</label>
+                <select name="decoration" id="decoration" [(ngModel)]="list.decoration">
+                    <option value="" hidden>Choose yes/no</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+    
+            <div class="form-group" *ngIf="role!='user'">
+                <label>Event Organzier</label>
+                <input  type="text" #organiser="ngModel" class="form-control" [class.is-invalid]="organiser.invalid && organiser.touched" name="organiser" [(ngModel)]="list.organiser"required> 
+                <small class="text-danger" [class.d-none]="organiser.valid || organiser.untouched">organizer is required</small>
+            </div><br>
+
+            <button (click)="backButton()" type="submit" class="btn btn-primary">Back</button>
+            <button [disabled]="eventForm.form.invalid" (click)="tableDisplay(eventForm)" class="submit btn btn-primary">Submit</button>
+
+        </form>
+    </div>
+</div>
