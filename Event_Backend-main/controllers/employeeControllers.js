@@ -22,12 +22,12 @@ router.get('/:id',(req,res)=>{
 });
 
 
-router.get('/:name/:passwordVaule',(req,res)=>{
-console.log(req.params.name);
+router.get('/:email/:passwordVaule',(req,res)=>{
+console.log(req.params.email);
 console.log(req.params.passwordVaule);
 
-    Employee.find({nameValue:req.params.name},{nameValue:1,password:1,_id:0},(err,doc)=>{
-        if(doc[0].nameValue===req.params.name && doc[0].password===req.params.passwordVaule){
+    Employee.find({email:req.params.email},{email:1,password:1,_id:0},(err,doc)=>{
+        if(doc[0].email===req.params.email && doc[0].password===req.params.passwordVaule){
             res.send("true");
         }
         else{

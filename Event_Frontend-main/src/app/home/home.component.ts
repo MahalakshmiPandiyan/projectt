@@ -18,9 +18,6 @@ export class HomeComponent implements OnInit {
     
   }
   venue(){
-    this.router.navigate(['/venue']);
-  }
-  history(){
     this.router.navigate(['/table']);
   }
   event(){
@@ -30,7 +27,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/features']);
   }
   logout(){
-    this.router.navigate(['/login']); 
+    this.router.navigate(['/first']); 
   }
   organizer(){
     this.router.navigate(['/organizer']); 

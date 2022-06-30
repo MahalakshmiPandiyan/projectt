@@ -1,0 +1,55 @@
+.login,.register{
+    width: 200px;
+    height: 40px;
+    margin-left: 120px;
+    color: #000;
+    background-image: linear-gradient(to right, white , gold);
+
+}
+.about{
+    margin-left: 120px;
+}
+button{
+    width: 130px;
+    height: 40px;
+    border: 2px solid black;
+    border-radius: 30px;
+    background-image: linear-gradient(to right, white , brown);
+
+}
+
+.outer{
+    background-image: url('../../assets/images/pic4.jpg');
+    height: 770px;
+     width: 900px;
+    background-position: center ;
+    background-size: cover;
+     margin: 0px;
+    min-height: 100%;
+    margin-top: 0px;
+    width: 100%;
+   
+}
+.inner{
+    margin-left:500px;
+    margin-top:150px;
+    width: 700px;
+    height: 500px;
+}
+.fa-hotel{
+    color:rgb(119, 31, 31);
+    font-size: 40px;
+}
+.fa-address-book,.fa-calendar,.fa-phone{
+    font-size: 25px;
+    color:rgb(119, 31, 31);
+    // margin-left: 100px;
+}
+h1,h2{
+    color:seashell;
+}
+
+nav{
+    background-image: linear-gradient(to right,gold,white);
+
+}

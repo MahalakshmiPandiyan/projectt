@@ -6,10 +6,7 @@
 <ng-container *ngIf="role=='user'">
     <div class="outer">    
         <div>
-            <button class="button" (click)="history()">View Booking history</button>
-        </div>
-        <div>
-            <button class="button" (click)="venue()" >View Venue Details</button>
+            <button class="button" (click)="venue()" >Booking History</button>
         </div>
         <div>
             <button class="button" (click)="event()">Book Event</button>
@@ -19,9 +16,6 @@
 
 <ng-container *ngIf="role!='user'">
     <div class="outer">
-        <div>
-            <button class="button" (click)="history()">View Booking history</button>
-        </div>
         <div>
             <button class="button" (click)="organizer()">Assign Organsier</button>
         </div>

@@ -4,11 +4,11 @@
     <div class="boder text-white w-50 p-4 opacity-75">
         <form  #userForm="ngForm">
             <h3>Login</h3>
-            <label>Name</label>
-            <input type="text" #username="ngModel" class="form-control" [class.is-invalid]="username.invalid && username.touched"
-             name="username" [(ngModel)]="name" required> 
-            <small class="text-danger" [class.d-none]="username.valid || username.untouched">Name is required</small>
-            <br><br>
+            <label>Email ID</label>
+              <input type="email" #email="ngModel" class="form-control" pattern="^[a-z0-9]{4,13}@[a-z]+\.[a-z\.]{2,6}$" [class.is-invalid]="email.invalid && email.touched"
+               name="email" [(ngModel)]="emailId" required> 
+              <small class="text-danger" [class.d-none]="email.valid || email.untouched">EmailId is required</small>
+                     <br><br>
     
             <label>Password</label>
               <input type="password" #password="ngModel" pattern="^([A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" class="form-control" required

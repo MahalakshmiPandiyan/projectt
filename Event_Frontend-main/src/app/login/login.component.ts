@@ -11,19 +11,19 @@ export class LoginComponent implements OnInit {
 
   constructor(private router:Router,private route: ActivatedRoute,private userService:UserService) { }
 
-  name:string="maha";
+  emailId:string="";
   passwordValue:string='';
   roleValue:string='';
   ngOnInit(): void {
   }
   dashBoard(){
-    this.userService.getDetails(this.name,this.passwordValue).subscribe((res)=>{
-      console.log(this.name);
+    this.userService.getDetails(this.emailId,this.passwordValue).subscribe((res)=>{
+      console.log(this.emailId);
       
       console.log("res : "+res);
 
       if(res==true){
-        if(this.name!='lakshmi' && this.passwordValue!='Mahalakshmi1')
+        if(this.emailId!='lakshmi1@gmail.com' && this.passwordValue!='Mahalakshmi1')
         {
           this.roleValue='user'
           console.warn(this.userService.getRole(this.roleValue));

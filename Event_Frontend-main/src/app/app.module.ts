@@ -14,6 +14,7 @@ import { EditComponent } from './edit/edit.component';
 import { OrganiserComponent } from './organiser/organiser.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
+import { FirstPageComponent } from './first-page/first-page.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +27,15 @@ import { RegisterComponent } from './register/register.component';
     FeaturesComponent,
     EditComponent,
     OrganiserComponent,
-    RegisterComponent
+    RegisterComponent,
+    FirstPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
