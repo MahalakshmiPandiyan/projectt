@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { EventComponent } from './event/event.component';
 import { TableComponent } from './table/table.component';
 import { VenueComponent } from './venue/venue.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FeaturesComponent } from './features/features.component';
 import { EditComponent } from './edit/edit.component';
 import { OrganiserComponent } from './organiser/organiser.component';
@@ -35,7 +35,7 @@ import { FirstPageComponent } from './first-page/first-page.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
