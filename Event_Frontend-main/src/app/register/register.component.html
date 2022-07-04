@@ -1,47 +1,41 @@
 <div class="login-div">  
   <br><br>
     <div class="boder text-white w-50 p-4 opacity-75">
-        <form  #userForm="ngForm">
+        <form [formGroup]="userForm">
             <h3>Register Form</h3>
             <label>Name</label>
-            <input type="text" #nameValue="ngModel" class="form-control" [class.is-invalid]="nameValue.invalid && nameValue.touched"
-             name="nameValue" [(ngModel)]="name" required> 
-            <small class="text-danger" [class.d-none]="nameValue.valid || nameValue.untouched">Name is required</small>
+            <input type="text" id="nameValue" name="nameValue" formControlName="nameValue" placeholder="Enter your name" (change)="trackNameChange()"> 
+            <!-- <small class="text-danger" [class.d-none]="nameValue.valid || nameValue.untouched">Name is required</small> -->
+            <span *ngIf="nameValue.hasError('required') && nameValue.touched" class="error"><small>nameValue is required</small></span>
+            <span *ngIf="nameValue.hasError('pattern')" class="error"><small>nameValue must contain only alphabets</small></span>                           
+
             <br>
     
             <label>Password</label>
-              <input type="password" #password="ngModel" pattern="^([A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" class="form-control" required
-              [class.is-invalid]="password.invalid && password.touched"  name="password" [(ngModel)]="passwordValue" >
-              <small class="text-danger" [class.d-none]="password.valid || password.untouched">password is required</small>
+              <input type="password" name="password" formControlName="password" id="password" (change)="trackPasswordChange()">
+              <!-- <small class="text-danger" [class.d-none]="password.valid || password.untouched">password is required</small> -->
+              <span *ngIf="password.hasError('required') && password.touched" class="error"><small>event_name is required</small></span>
+              <span *ngIf="password.hasError('pattern')" class="error"><small>Password atleast 8 character,1 lower alpha,1 upper alpha,1 special characters,1 number</small></span>                           
               <br>
 
-            <label>Confirm Password</label>
-              <input type="password" #Confirmpassword="ngModel" pattern="^([A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" class="form-control" required
-              [class.is-invalid]="Confirmpassword.invalid && Confirmpassword.touched" name="Confirmpassword" [(ngModel)]="ConfirmpasswordValue" >
-              <small class="text-danger"  [class.d-none]="Confirmpassword.valid || Confirmpassword.untouched">Confirm password is required</small>
-              <small class="text-danger" *ngIf="!conform()"  [class.d-none]="Confirmpassword.valid || Confirmpassword.untouched">Mismatch Password</small>
-              <br>
 
               <label>Email ID</label>
-              <input type="email" #email="ngModel" class="form-control" pattern="^[a-z0-9]{4,13}@[a-z]+\.[a-z\.]{2,6}$" [class.is-invalid]="email.invalid && email.touched"
-               name="email" [(ngModel)]="emailId" required> 
-              <small class="text-danger" [class.d-none]="email.valid || email.untouched">EmailId is required</small>
+              <input type="email" name="email" id="email" formControlName="email" (change)="trackEmailChange()"> 
+              <!-- <small class="text-danger" [class.d-none]="email.valid || email.untouched">EmailId is required</small> -->
+              <span *ngIf="email.hasError('required') && email.touched" class="error"><small>event_name is required</small></span>
+              <span *ngIf="email.hasError('pattern')" class="error"><small>Invalid Email Id</small></span>                           
               <br>
 
-                <!-- <label>Email</label>
-                <input type="text" #email="ngModel" pattern="^[a-z0-9]{4,13}@[a-z]+\.[a-z\.]{2,6}$" class="form-control" required
-                [class.is-invalid]="email.invalid && email.touched"  name="email" [(ngModel)]="emailId" >
-                <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is invalid</small>
-                <br> -->
                 
                 <label>Phone</label>
-                <input type="text" #phone="ngModel" pattern="^\d{10}$" class="form-control" required
-                [class.is-invalid]="phone.invalid && phone.touched" name="phone" [(ngModel)]="phoneNum"> 
-                <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone number should be 10 digits</small>
+                <input type="text" name="phone" id="phone" formControlName="phone" (change)="trackPhoneChange()"> 
+                <!-- <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone number should be 10 digits</small> -->
+                <span *ngIf="phone.hasError('required') && phone.touched" class="error"><small>event_name is required</small></span>
+                <span *ngIf="phone.hasError('pattern')" class="error"><small>Password atleast 8 character,1 lower alpha,1 uppe</small></span>                           
                 <br>
 
                 
-              <button  [disabled]="userForm.form.invalid || output==='false'" (click)="register(userForm)">Register</button><br>
+              <button [disabled]="userForm.invalid" (click)="register(userForm)">Register</button><br>
               <a (click)="login()">Already Register -Login </a>
 
 

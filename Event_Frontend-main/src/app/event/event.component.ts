@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl,NgForm ,Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { History } from '../history';
 import { HistoryService } from '../history.service';
@@ -15,28 +15,39 @@ import { UserService } from '../user.service';
 export class EventComponent implements OnInit {
   minDate:any=''
   today = new Date().toLocaleDateString()
-  list:History={
-    _id: '', event_name: '', event_date: '', event_time: '', food: '', photography: '', decoration: '',
-    organiser: 'unassigned'
-  }
+  // list:History={
+  //   _id: '', event_name: '', event_date: '', event_time: '', food: '', photography: '', decoration: '',
+  //   organiser: 'unassigned'
+  // }
 
+  eventForm:FormGroup|any;
+
+ 
   name: any;
   date:any;
   time:any;
-  food:any;
+  foodValue:any;
   photo:any;
-  decoration:any;
-  organiser:any;
+  decorationValue:any;
+  organiserValue:any;
   locale ='en-US'
 
   _id: string = '';
   role:string=''
 
-  constructor(private router:Router,private route: ActivatedRoute,private history:HistoryService,private userService:UserService) { 
+  constructor(private router:Router,private route: ActivatedRoute,private history:HistoryService,private userService:UserService,private formBuilder:FormBuilder) { 
+
+    this.eventForm=this.formBuilder.group({
+      event_name:new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z ]{1,15}$')]),
+      event_date:new FormControl('',[Validators.required]),
+      event_time:new FormControl('',Validators.required),
+      food:new FormControl('',Validators.required),
+      decoration:new FormControl('',Validators.required),
+      photography:new FormControl('',Validators.required),
+      organiser:new FormControl('',Validators.required)
+    })
+   
   }
-
-
- 
 
   
   ngOnInit(): void {
@@ -61,54 +72,33 @@ export class EventComponent implements OnInit {
 
 
       this.name=Object.values(res)[1];
-      this.list.event_name=this.name;
-
       this.date=Object.values(res)[2];
       this.date=formatDate(res.event_date,'yyyy-MM-dd',this.locale)
-      this.list.event_date=this.date;
-
-
       this.time=Object.values(res)[3];
-      this.time.toString();
-      this.list.event_time=this.time;
-
-
-      this.food=Object.values(res)[4];
-      this.food.toString();
-      this.list.food=this.food;
-
-
+      this.foodValue=Object.values(res)[4];
       this.photo=Object.values(res)[5];
-      this.photo.toString();
-      this.list.photography=this.photo;
+      this.decorationValue=Object.values(res)[6];
+      this.organiserValue=Object.values(res)[7];
 
 
-      this.decoration=Object.values(res)[6];
-      this.name.toString();
-      this.list.decoration=this.decoration;
-
-      
-      // this.organiser=Object.values(res)[7];
-      // this.organiser.toString();
-      // this.list.organiser=this.organiser;
     })        
   }
 
   submit(){
-    console.log(this.list)
+    // console.log(this.list)
   }
   backButton(){
     this.router.navigate(['/home'])
   }
-  tableDisplay(eventForm:NgForm) {
+  tableDisplay(eventForm:FormGroup) {
 
     if (!this._id) {
       //Create New User
       this.history.postDetails(eventForm.value).subscribe((data)=>{
         console.log(data);
       })
-      console.log("id : " + this.list._id);
-      console.log(this.list);
+      // console.log("id : " + this.list._id);
+      // console.log(this.list);
       alert("Details are added Successfully")
     } 
     else {
@@ -137,5 +127,70 @@ export class EventComponent implements OnInit {
     this.minDate= year+"-"+month+"-"+toDate;
     return true;
   }
+
+  get event_name(){
+    return this.eventForm.get('event_name')
+  }
+  get event_date(){
+    return this.eventForm.get('event_date')
+  }
+  get event_time(){
+    return this.eventForm.get('event_time')
+  }
+  get food(){
+    return this.eventForm.get('food')
+  }
+  get photography(){
+    return this.eventForm.get('photography')
+  }
+  get decoration(){
+    return this.eventForm.get('decoration')
+  }
+  get organiser(){
+    return this.eventForm.get('organiser')
+  }
+  
+    //tracking value changes in form
+    trackNameChange(){
+      this.eventForm.get("event_name").valueChanges.subscribe((data: any)=>{
+        console.log(data)
+      })
+    }
+
+    trackDateChange(){
+      this.eventForm.get("event_date").valueChanges.subscribe((data: any)=>{
+        console.log(data)
+      })
+    }
+
+    trackTimeChange(){
+      this.eventForm.get("event_time").valueChanges.subscribe((data: any)=>{
+        console.log(data)
+      })
+    }
+
+    trackFoodChange(){
+      this.eventForm.get("food").valueChanges.subscribe((data: any)=>{
+        console.log(data)
+      })
+    }
+    trackPhotoChange(){
+      this.eventForm.get("photography").valueChanges.subscribe((data: any)=>{
+        console.log(data)
+      })
+    }
+
+    trackOranginserChange(){
+      this.eventForm.get("organiser").valueChanges.subscribe((data: any)=>{
+        console.log(data)
+      })
+    }
+    trackDecorationChange(){
+      this.eventForm.get("decoration").valueChanges.subscribe((data: any)=>{
+        console.log(data)
+      })
+    }
+
+
 
 }

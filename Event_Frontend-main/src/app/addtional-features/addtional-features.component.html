@@ -1,0 +1,21 @@
+<div class="outer">
+    <div class="boder bg-secondary text-white w-50 p-4">
+        <form [formGroup]="featuresForm">
+            <div class="form-group">
+                <label>Additional Features</label><br>
+                <input type="text" formControlName="name" value="{{featuresForm.name}}" (change)="trackNameChange()" placeholder="Enter Features"> 
+                <span *ngIf="name.hasError('required') && name.touched" class="error"><small>Features is required</small></span>
+                <span *ngIf="name.hasError('pattern')" class="error"><small>Fullname must contain only alphabets</small></span>           
+             </div>
+            <div class="form-group">
+                <label>Event Amount</label><br>
+                <input type="text"  formControlName="amount" value="{{featuresForm.amount}}" (change)="trackAmountChange()" placeholder="Enter amount"> 
+                <span *ngIf="amount.hasError('required') && amount.touched" class="error"><small>Amount is required</small></span><br><br>
+                <!-- <span *ngIf="amount.hasError('pattern')" class="error"><small>Amount must contain only numbers</small></span>             -->
+            </div>
+            <br>
+            <button (click)="backButton()" type="submit" class="btn btn-primary">Back</button>
+            <button (click)="tableDisplay(featuresForm)" [disabled]="featuresForm.invalid" class="login btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     console.log(this.role);
     
   }
-  venue(){
+  history(){
     this.router.navigate(['/table']);
   }
   event(){

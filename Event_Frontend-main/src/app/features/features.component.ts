@@ -24,8 +24,7 @@ export class FeaturesComponent implements OnInit {
   delete(_id:string){
     if (confirm('Are you sure to delete this record ?') == true) {
     this.featureService.deleteUserId(_id).subscribe((res) => {
-      console.log(res);
-      
+      console.log(res);  
     });
     this.featureService.getList().subscribe((res)=>{
       this.featuresList=res as Features[]

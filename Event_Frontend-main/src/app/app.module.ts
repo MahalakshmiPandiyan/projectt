@@ -10,11 +10,11 @@ import { TableComponent } from './table/table.component';
 import { VenueComponent } from './venue/venue.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FeaturesComponent } from './features/features.component';
-import { EditComponent } from './edit/edit.component';
 import { OrganiserComponent } from './organiser/organiser.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { FirstPageComponent } from './first-page/first-page.component';
+import { AddtionalFeaturesComponent } from './addtional-features/addtional-features.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +25,10 @@ import { FirstPageComponent } from './first-page/first-page.component';
     TableComponent,
     VenueComponent,
     FeaturesComponent,
-    EditComponent,
     OrganiserComponent,
     RegisterComponent,
-    FirstPageComponent
+    FirstPageComponent,
+    AddtionalFeaturesComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,57 +1,64 @@
 <div class="outer">
     <div class="boder bg-secondary text-white w-50 p-4">
-        <form  #eventForm="ngForm">
+        <form [formGroup]="eventForm">
             <div class="form-group">
                 <label>Event Name</label>
-                <input type="text" #event_name="ngModel" class="form-control" [class.is-invalid]="event_name.invalid && event_name.touched"  name="event_name" [(ngModel)]="list.event_name"required> 
-                <small class="text-danger" [class.d-none]="event_name.valid || event_name.untouched">Event Name is required</small>
+                <input type="text" formControlName="event_name" name="event_name" [value]="name" (change)="trackNameChange()" > 
+                <span *ngIf="event_name.hasError('required') && event_name.touched" class="error"><small>event_name is required</small></span>
+                <span *ngIf="event_name.hasError('pattern')" class="error"><small>event_name must contain only alphabets</small></span>           
+                <!-- <small class="text-danger" [class.d-none]="event_name.valid || event_name.untouched">Event Name is required</small> -->
             </div>
             <div class="form-group">
                 <label>Event Date</label>
                 <!-- <input type="date" min="{{minDate}}"> -->
-                <input type="date" min="{{minDate}}" #event_date="ngModel"  class="form-control" [class.is-invalid]="event_date.invalid && event_date.touched" name="event_date" [(ngModel)]="list.event_date" required>
-                <small class="text-danger" [class.d-none]="event_date.valid || event_date.untouched">Date is required</small>
+                <input type="date" min="{{minDate}}" formControlName="event_date" [value]="date"  (change)="trackDateChange()" name="event_date">
+                <span *ngIf="event_date.hasError('required') && event_date.touched" class="error"><small>event_date is required</small></span>  
+                <!-- <small class="text-danger" [class.d-none]="event_date.valid || event_date.untouched">Date is required</small> -->
             </div>
             <div class="form-group">
                 <label>Event Timings</label>
-                <input type="text" #event_time="ngModel" class="form-control" [class.is-invalid]="event_time.invalid && event_time.touched" name="event_time" [(ngModel)]="list.event_time"required> 
-                <small class="text-danger" [class.d-none]="event_time.valid || event_time.untouched">Time is required</small>
+                <input type="text" formControlName="event_time" name="event_time" [value]="time" (change)="trackTimeChange()" id="event_time"> 
+                <span *ngIf="event_time.hasError('required') && event_time.touched" class="error"><small>event_time is required</small></span>  
+                <!-- <small class="text-danger" [class.d-none]="event_time.valid || event_time.untouched">Time is required</small> -->
             </div>
             <div class="form-group">
                 <label for="photo">Do you want Photography?</label>
-                <select name="photography" id="photo"  [(ngModel)]="list.photography" required>
+                <select (change)="trackPhotoChange()" name="photography"[value]="photo"  id="photography" formControlName="photography"  >
                     <option value="" hidden>Choose yes/no</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
-
+                <span *ngIf="photography.hasError('required') && photography.touched" class="error"><small>photography is required</small></span>  
             </div>
             <div class="form-group">
                 <label for="role">Do you want Food?</label>
-                <select name="food" id="food" [(ngModel)]="list.food">
+                <select (change)="trackFoodChange()" name="food" id="food" [value]="foodValue"  formControlName="food">
                     <option value="" hidden>Choose yes/no</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
+                <span *ngIf="food.hasError('required') && food.touched" class="error"><small>food is required</small></span>  
             </div>
 
             <div class="form-group">
                 <label for="decoration">Do you want decoration?</label>
-                <select name="decoration" id="decoration" [(ngModel)]="list.decoration">
+                <select (change)="trackDecorationChange()" name="decoration" [value]="decorationValue"  id="decoration" formControlName="decoration">
                     <option value="" hidden>Choose yes/no</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
+                <span *ngIf="decoration.hasError('required') && decoration.touched" class="error"><small>decoration is required</small></span>  
             </div>
     
             <div class="form-group" *ngIf="role!='user'">
                 <label>Event Organzier</label>
-                <input  type="text" #organiser="ngModel" class="form-control" [class.is-invalid]="organiser.invalid && organiser.touched" name="organiser" [(ngModel)]="list.organiser"required> 
-                <small class="text-danger" [class.d-none]="organiser.valid || organiser.untouched">organizer is required</small>
+                <input (change)="trackOranginserChange()" type="text" name="organiser" [value]="organiserValue"  formControlName="organiser" id="organiser"> 
+                <span *ngIf="organiser.hasError('required') && organiser.touched" class="error"><small>organiser is required</small></span>  
+                <!-- <small class="text-danger" [class.d-none]="organiser.valid || organiser.untouched">organizer is required</small> -->
             </div><br>
 
             <button (click)="backButton()" type="submit" class="btn btn-primary">Back</button>
-            <button [disabled]="eventForm.form.invalid" (click)="tableDisplay(eventForm)" class="submit btn btn-primary">Submit</button>
+            <button [disabled]="eventForm.invalid" (click)="tableDisplay(eventForm)" class="submit btn btn-primary">Submit</button>
 
         </form>
     </div>

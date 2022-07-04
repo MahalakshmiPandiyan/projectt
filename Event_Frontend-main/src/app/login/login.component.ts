@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router:Router,private route: ActivatedRoute,private userService:UserService) { }
 
+  data: any[]=['lakshmi1@gmail.com','Mahalakshmi1']
   emailId:string="";
   passwordValue:string='';
   roleValue:string='';
@@ -23,8 +24,10 @@ export class LoginComponent implements OnInit {
       console.log("res : "+res);
 
       if(res==true){
-        if(this.emailId!='lakshmi1@gmail.com' && this.passwordValue!='Mahalakshmi1')
+        if(this.emailId!=this.data[0] && this.passwordValue!=this.data[1])
         {
+          console.log("[0]"+this.data[0]);
+          
           this.roleValue='user'
           console.warn(this.userService.getRole(this.roleValue));
           console.log(this.roleValue);
