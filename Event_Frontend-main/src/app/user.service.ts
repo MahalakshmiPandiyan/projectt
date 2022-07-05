@@ -8,6 +8,7 @@ export class UserService {
 
   role:string=''
   name: string='';
+  email:string='';
   passwordValue: string='';
   roleValue: string='';
   getRole(roleValue:string){
@@ -20,6 +21,15 @@ export class UserService {
   constructor(private http:HttpClient){}
 
   // postLogin(emp)
+
+getAdmin(email:string){
+  this.email=email;
+  console.log("getAdmin"+email);
+  
+    return this.http.get(this.baseUrl+`/${email}`);
+
+}
+
   getDetails(name:string,passwordValue:string){
     this.name=name;
     this.passwordValue=passwordValue;

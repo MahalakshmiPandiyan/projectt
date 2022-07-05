@@ -3,7 +3,7 @@
         <form [formGroup]="eventForm">
             <div class="form-group">
                 <label>Event Name</label>
-                <input type="text" formControlName="event_name" name="event_name" [value]="name" (change)="trackNameChange()" > 
+                <input type="text" formControlName="event_name" name="event_name" (change)="trackNameChange()" > 
                 <span *ngIf="event_name.hasError('required') && event_name.touched" class="error"><small>event_name is required</small></span>
                 <span *ngIf="event_name.hasError('pattern')" class="error"><small>event_name must contain only alphabets</small></span>           
                 <!-- <small class="text-danger" [class.d-none]="event_name.valid || event_name.untouched">Event Name is required</small> -->
@@ -11,19 +11,19 @@
             <div class="form-group">
                 <label>Event Date</label>
                 <!-- <input type="date" min="{{minDate}}"> -->
-                <input type="date" min="{{minDate}}" formControlName="event_date" [value]="date"  (change)="trackDateChange()" name="event_date">
+                <input type="date" min="{{minDate}}" formControlName="event_date"  (change)="trackDateChange()" name="event_date">
                 <span *ngIf="event_date.hasError('required') && event_date.touched" class="error"><small>event_date is required</small></span>  
                 <!-- <small class="text-danger" [class.d-none]="event_date.valid || event_date.untouched">Date is required</small> -->
             </div>
             <div class="form-group">
                 <label>Event Timings</label>
-                <input type="text" formControlName="event_time" name="event_time" [value]="time" (change)="trackTimeChange()" id="event_time"> 
+                <input type="text" formControlName="event_time" name="event_time" (change)="trackTimeChange()"> 
                 <span *ngIf="event_time.hasError('required') && event_time.touched" class="error"><small>event_time is required</small></span>  
                 <!-- <small class="text-danger" [class.d-none]="event_time.valid || event_time.untouched">Time is required</small> -->
             </div>
             <div class="form-group">
                 <label for="photo">Do you want Photography?</label>
-                <select (change)="trackPhotoChange()" name="photography"[value]="photo"  id="photography" formControlName="photography"  >
+                <select (change)="trackPhotoChange()" name="photography" formControlName="photography"  >
                     <option value="" hidden>Choose yes/no</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="role">Do you want Food?</label>
-                <select (change)="trackFoodChange()" name="food" id="food" [value]="foodValue"  formControlName="food">
+                <select (change)="trackFoodChange()" name="food" id="food"   formControlName="food">
                     <option value="" hidden>Choose yes/no</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -42,7 +42,7 @@
 
             <div class="form-group">
                 <label for="decoration">Do you want decoration?</label>
-                <select (change)="trackDecorationChange()" name="decoration" [value]="decorationValue"  id="decoration" formControlName="decoration">
+                <select (change)="trackDecorationChange()" name="decoration"  id="decoration" formControlName="decoration">
                     <option value="" hidden>Choose yes/no</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
@@ -52,7 +52,7 @@
     
             <div class="form-group" *ngIf="role!='user'">
                 <label>Event Organzier</label>
-                <input (change)="trackOranginserChange()" type="text" name="organiser" [value]="organiserValue"  formControlName="organiser" id="organiser"> 
+                <input (change)="trackOranginserChange()" type="text" name="organiser"   formControlName="organiser" id="organiser"> 
                 <span *ngIf="organiser.hasError('required') && organiser.touched" class="error"><small>organiser is required</small></span>  
                 <!-- <small class="text-danger" [class.d-none]="organiser.valid || organiser.untouched">organizer is required</small> -->
             </div><br>

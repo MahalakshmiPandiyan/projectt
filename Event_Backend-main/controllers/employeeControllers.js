@@ -12,27 +12,27 @@ router.get('/',(req,res)=>{
     });
 });
 
-router.get('/:id',(req,res)=>{
-    if(!ObjectId.isValid(req.params.id))
-        return res.status(400).send(`No record with given id : ${req.parmas.id}`);
-    Employee.findById(req.params.id,(err,doc)=>{
-        if(!err){res.send(doc);}
+router.get('/:email',(req,res)=>{
+    console.log(req.params.email);
+    Employee.find({email:req.params.email},(err,doc)=>{
+        if(!err){
+            console.log(doc[0].role);
+            res.status(200).json({role:doc[0].role})}
         else{console.log('Error in retriving : '+JSON.stringify(err,undefined,2));}
     });
 });
 
 
 router.get('/:email/:passwordVaule',(req,res)=>{
-console.log(req.params.email);
-console.log(req.params.passwordVaule);
-
     Employee.find({email:req.params.email},{email:1,password:1,_id:0},(err,doc)=>{
         if(doc[0].email===req.params.email && doc[0].password===req.params.passwordVaule){
             res.send("true");
         }
         else{
-            res.send("false");
-            console.log("false");
+            res.status(401).json({
+                message: 'Incorret Username or Password'
+            })
+
             // return false;
         }
     })
@@ -49,7 +49,9 @@ router.post('',(req,res)=>{
         phone:req.body.phone
     });
     emp.save((err,doc)=>{
-        if(!err){res.send(doc);}
+        if(!err){
+            res.status(200).send({doc,message:'Successfully Registered'})
+        }
         else{console.log('error in save : '+ JSON.stringify(err,undefined,2));}
     });
 });

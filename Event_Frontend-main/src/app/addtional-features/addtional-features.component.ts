@@ -48,8 +48,6 @@ import { FeaturesService } from '../features.service';
    this.router.navigate(['/home'])
  }
 
- 
-
  tableDisplay(featuresForm:FormGroup) {
  // {
 

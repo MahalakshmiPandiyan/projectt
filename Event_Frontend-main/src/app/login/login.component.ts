@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../user.service';
 
@@ -8,49 +9,47 @@ import { UserService } from '../user.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  error: any;
 
   constructor(private router:Router,private route: ActivatedRoute,private userService:UserService) { }
 
-  data: any[]=['lakshmi1@gmail.com','Mahalakshmi1']
   emailId:string="";
   passwordValue:string='';
   roleValue:string='';
+  newRole:string=''
   ngOnInit(): void {
   }
-  dashBoard(){
-    this.userService.getDetails(this.emailId,this.passwordValue).subscribe((res)=>{
-      console.log(this.emailId);
+  dashBoard(userForm:NgForm){
+    this.userService.getDetails(this.emailId,this.passwordValue).subscribe((res)=>{      
       
-      console.log("res : "+res);
+      this.userService.getAdmin(this.emailId).subscribe((res1)=>{     
+        if(res==true){
+          if(Object.values(res1)[0]!=='admin')
+          {          
+            this.roleValue='user'
+            console.warn(this.userService.getRole(this.roleValue));
+            console.log(this.roleValue);
+            this.router.navigate(['/home']);
+          }
+          else
+          {
+            this.roleValue='admin'
+            console.warn(this.userService.getRole(this.roleValue));
+            console.log(this.roleValue);
+            this.router.navigate(['/home']);
+          }
+        }
+        // else{
+        //   alert("Invalid Username or Password!!!!!!!")
+        // }   
+      });
+    },
+    (err)=>{
+      this.error=err.message;
+      alert(err.error.message)
 
-      if(res==true){
-        if(this.emailId!=this.data[0] && this.passwordValue!=this.data[1])
-        {
-          console.log("[0]"+this.data[0]);
-          
-          this.roleValue='user'
-          console.warn(this.userService.getRole(this.roleValue));
-          console.log(this.roleValue);
-          this.router.navigate(['/home']);
-        }
-        else
-        {
-          this.roleValue='admin'
-          console.warn(this.userService.getRole(this.roleValue));
-          console.log(this.roleValue);
-          this.router.navigate(['/home']);
-        }
-      }
-      else{
-        alert("Invalid Username or Password!!!!!!!")
-      }
     });
- 
 
-    // else{
-    //   this.router.navigate(['/dashboard']);
-
-    // }
   }
   register(){
       this.router.navigate(['/register']);

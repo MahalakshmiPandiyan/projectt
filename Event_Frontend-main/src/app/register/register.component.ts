@@ -13,6 +13,7 @@ import { UserService } from '../user.service';
 export class RegisterComponent implements OnInit {
 
   userForm:FormGroup|any
+  message: any;
  
   constructor(private router:Router,private route: ActivatedRoute,private loginSerice:LoginService,private userService:UserService,private formBuilder:FormBuilder) { 
 
@@ -39,9 +40,10 @@ export class RegisterComponent implements OnInit {
   register(userForm:FormGroup){
     
     this.loginSerice.getDetails(userForm.value).subscribe((res)=>{
-      console.log("res register : "+res.toString());
+      console.log("res register : "+JSON.stringify(res));
+      this.message=Object.values(res)[1];
+      alert(this.message)
     });
-    
     this.roleValue='user'
     console.warn(this.userService.getRole(this.roleValue));
     console.log(this.roleValue);

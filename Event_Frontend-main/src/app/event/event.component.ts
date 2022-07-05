@@ -34,6 +34,8 @@ export class EventComponent implements OnInit {
 
   _id: string = '';
   role:string=''
+  message: any;
+  message2: any;
 
   constructor(private router:Router,private route: ActivatedRoute,private history:HistoryService,private userService:UserService,private formBuilder:FormBuilder) { 
 
@@ -58,35 +60,33 @@ export class EventComponent implements OnInit {
       
       console.log("route _id : "+this._id);        
     });
-    this.onEdit(this._id);
+    // this.onEdit(this._id);
     
    this.dateValidation();
      
   }
   
-  onEdit(_id:any) {
-    console.log("edit"+_id);
-    this.history.getList();
-    this.history.getUserId(this._id).subscribe((res)=>{
-      console.log(res);
+  // onEdit(_id:any) {
+  //   console.log("edit"+_id);
+  //   this.history.getList();
+  //   this.history.getUserId(this._id).subscribe((res)=>{
+  //     console.log(res);
 
 
-      this.name=Object.values(res)[1];
-      this.date=Object.values(res)[2];
-      this.date=formatDate(res.event_date,'yyyy-MM-dd',this.locale)
-      this.time=Object.values(res)[3];
-      this.foodValue=Object.values(res)[4];
-      this.photo=Object.values(res)[5];
-      this.decorationValue=Object.values(res)[6];
-      this.organiserValue=Object.values(res)[7];
+  //     this.name=Object.values(res)[1];
+  //     this.date=Object.values(res)[2];
+  //     this.date=formatDate(res.event_date,'yyyy-MM-dd',this.locale)
+  //     this.time=Object.values(res)[3];
+  //     this.foodValue=Object.values(res)[4];
+  //     this.photo=Object.values(res)[5];
+  //     this.decorationValue=Object.values(res)[6];
+  //     this.organiserValue=Object.values(res)[7];
 
 
-    })        
-  }
+  //   })        
+  // }
 
-  submit(){
-    // console.log(this.list)
-  }
+  
   backButton(){
     this.router.navigate(['/home'])
   }
@@ -96,18 +96,19 @@ export class EventComponent implements OnInit {
       //Create New User
       this.history.postDetails(eventForm.value).subscribe((data)=>{
         console.log(data);
+        this.message=Object.values(data)[1];
+         alert(this.message)
       })
       // console.log("id : " + this.list._id);
       // console.log(this.list);
-      alert("Details are added Successfully")
     } 
     else {
       //Update User info
-      // this.formData(eventForm);
       this.history.putEvent(eventForm.value,this._id).subscribe((res)=>{
-        console.log("update event info");
+        console.log("update event info"+JSON.stringify(res));
+        this.message2=Object.values(res)[1];
+        alert(this.message2)
       })
-      alert("Details are Updated Successfully")
     }
     this.router.navigate(['/home'])
   }

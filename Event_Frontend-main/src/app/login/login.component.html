@@ -17,7 +17,7 @@
               <br><br>
  
     
-        <button [disabled]="userForm.form.invalid" (click)="dashBoard()">Login</button>
+        <button [disabled]="userForm.form.invalid" (click)="dashBoard(userForm)">Login</button>
         <br>
         <a (click)="register()">New User - Register </a>
     </form>

@@ -5,19 +5,23 @@ var ObjectId= require('mongoose').Types.ObjectId;
 var {Event}= require('../models/event');
 
 const getAllEvent = async (req,res)=>{
-    Event.find((err,docs)=>{
-        console.log(docs);
-        if(!err){res.send(docs);}
-        else{console.log('error in retriving data from event : '+JSON.stringify(err,undefined,2));}
+    try{
+    Event.find((err,doc)=>{
+        res.status(200).send(doc)
     });
+    }
+    catch(err){
+        return res.status(400).send("error in get event ")
+    }
+    
 }
 
 const getEventById=async (req,res)=>{
     if(!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id `);
-    Event.findById(req.params.id,(err,doc)=>{
-        if(!err){res.send(doc);}
-        else{console.log('Error in retriving : '+JSON.stringify(err,undefined,2));}
+    const event=Event.findById(req.params.id,(err,doc)=>{
+        if(!event){res.status(400).json({message:"error in get by id event "})}
+        else{res.send(doc);}
     });
 };
 
@@ -34,8 +38,11 @@ const postEvent= async (req,res)=>{
 
     });
     event.save((err,doc)=>{
-        if(!err){res.send(doc);}
-        else{console.log('error in save post event: '+ JSON.stringify(err,undefined,2));}
+        if(!err){
+            res.status(200).send({doc,message:'Successfully Registered Your Event'})
+        }
+
+        else{res.status(400).statusText("error in post put event ")}
     });
 };
 
@@ -55,8 +62,11 @@ const putEvent= async (req,res)=>{
     };  
     console.log("event",event);
     Event.findByIdAndUpdate(req.params.id,{$set:event},{new:true},(err,doc)=>{
-        if(!err){res.send(doc);}
-        else{console.log('error in save put event : '+ JSON.stringify(err,undefined,2));}
+        if(!err){
+            res.status(200).send({doc,message:'Successfully Updated '})
+        }
+        // else{console.log('error in save put event : '+ JSON.stringify(err,undefined,2));}
+        else{res.status(400).statusText("error in save put event ")}
     });
 };
 module.exports={
