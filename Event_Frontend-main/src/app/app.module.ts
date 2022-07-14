@@ -11,10 +11,17 @@ import { VenueComponent } from './venue/venue.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FeaturesComponent } from './features/features.component';
 import { OrganiserComponent } from './organiser/organiser.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { AddtionalFeaturesComponent } from './addtional-features/addtional-features.component';
+import { LoginService } from './login.service';
+import { AuthGuard } from './auth.guard';
+import { TokenInterceptorService } from './token-interceptor.service';
+import { GalleryComponent } from './gallery/gallery.component';
+import { EventDisplayComponent } from './event-display/event-display.component';
+import { FeaturesDisplayComponent } from './features-display/features-display.component';
+import { AddEventDetailsComponent } from './add-event-details/add-event-details.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +36,10 @@ import { AddtionalFeaturesComponent } from './addtional-features/addtional-featu
     RegisterComponent,
     FirstPageComponent,
     AddtionalFeaturesComponent,
+    GalleryComponent,
+    EventDisplayComponent,
+    FeaturesDisplayComponent,
+    AddEventDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +48,11 @@ import { AddtionalFeaturesComponent } from './addtional-features/addtional-featu
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [LoginService,AuthGuard,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

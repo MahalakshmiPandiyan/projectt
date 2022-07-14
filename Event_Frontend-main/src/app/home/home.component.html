@@ -6,7 +6,9 @@
 <ng-container *ngIf="role=='user'">
     <div class="outer">    
         <div>
-            <button class="button" (click)="history()" >Booking History</button>
+            <img class="card-img-top" (click)="history()" src="assets/images/pic1.jpeg" alt="Card image cap">
+
+            <!-- <button class="button" (click)="history()" >Booking History</button> -->
         </div>
         <div>
             <button class="button" (click)="event()">Book Event</button>
@@ -15,15 +17,49 @@
 </ng-container>
 
 <ng-container *ngIf="role!='user'">
-    <div class="outer">
-        <div>
-            <button class="button" (click)="history()" >Booking History</button>
+    <div class="container"> 
+        <div class="card">
+            <img class="card-img-top" (click)="history()" src="assets/images/pic8.jpg" alt="Card image cap">
+            <div  class="first-txt"><strong>Booking History</strong></div>
         </div>
-        <div>
+        <div class="card">
+
+            <img class="card-img-top" (click)="organizer()" src="assets/images/pic9.jpg" alt="Card image cap">
+            <div  class="first-txt"><strong>Assign Organsier</strong></div>
+        </div>
+        <div class="card">
+
+            <img class="card-img-top" (click)="edit()" src="assets/images/pic10.jpg" alt="Card image cap">
+            <div  class="first-txt"><strong>Edit Features</strong></div>
+        </div>
+        <div class="card">
+
+            <img class="card-img-top" (click)="addFeatures()" src="assets/images/pic11.jpg" alt="Card image cap">
+            <div  class="first-txt"><strong>Add Features</strong></div>
+        </div>
+        <div class="card">
+
+            <img class="card-img-top" (click)="editEventDetails()" src="assets/images/pic13.jpg" alt="Card image cap">
+            <div  class="first-txt"><strong> Edit Event with Details</strong></div>
+        </div>
+        <div class="card">
+
+            <img class="card-img-top" (click)="addEventDetails()" src="assets/images/pic14.jpg" alt="Card image cap">
+            <div  class="first-txt"><strong>Add Event with Details</strong></div>
+        </div>
+        <!-- <div>
             <button class="button" (click)="organizer()">Assign Organsier</button>
         </div>
         <div>
             <button class="button" (click)="edit()">Edit Features</button>
         </div>
+        <div>
+            <button class="button" (click)="addFeatures()">Add Features</button>
+        </div> -->
+
     </div>
 </ng-container>
+
+
+
+

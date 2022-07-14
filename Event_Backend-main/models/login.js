@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-const Employee = mongoose.model('Employee',{
+const Login = mongoose.model('Login',{
     nameValue:{type:String},
     password:{type:String},
     role:{type:String},
@@ -8,4 +8,4 @@ const Employee = mongoose.model('Employee',{
     phone:{type:String}
 });
 
-module.exports={Employee};
+module.exports={Login};

@@ -1,0 +1,18 @@
+<nav class="navbar">
+    <h1>Features</h1>
+    <button class="back btn btn-secondary" (click)="back()">Back</button>
+</nav>
+<div class="features">
+    <table class="table">
+        <thead>
+            <th>Name</th>
+            <th>Price</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of featuresList">
+                <td>{{item.name}}</td>
+                <td>{{item.amount}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

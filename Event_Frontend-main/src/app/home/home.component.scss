@@ -19,6 +19,26 @@ div{
     margin-left: 750px;
     width: 120px;
 }
+.first-txt {
+    position: absolute;
+    top: 210px;
+    font-size: 25px;
+    left: 50px;
+}
+img{
+    width: 400px;
+    height: 210px;
+}
+img:hover{
+    transform: scale(1.1);
+}
+.card{
+    float: left;
+    width: 450px;
+    height: 280px;
+    margin: 20px;
+    margin-left: 130px;
+}
 // .container{
 //     background-image: url('../../assets/images/pic1.jpg');
 //     height: 710px;

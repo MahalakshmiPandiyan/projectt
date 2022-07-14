@@ -10,6 +10,7 @@ import { FeaturesService } from '../features.service';
 })
 export class FeaturesComponent implements OnInit {
   featuresList:Features[]=[]
+  error:any
 
   constructor(private router:Router,private route: ActivatedRoute,private featureService:FeaturesService) { }
 
@@ -29,6 +30,11 @@ export class FeaturesComponent implements OnInit {
     this.featureService.getList().subscribe((res)=>{
       this.featuresList=res as Features[]
       console.log(JSON.stringify(res));
+    },
+    (err) => {
+      this.error = err.message;
+      alert(err.error.message)
+
     });
   }
   }
@@ -38,8 +44,4 @@ export class FeaturesComponent implements OnInit {
 
   }
 
-  addFeatures()
-  {
-    this.router.navigate(['/edit']);
-  }
 }

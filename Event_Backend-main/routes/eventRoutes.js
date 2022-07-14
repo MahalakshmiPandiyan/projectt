@@ -1,10 +1,13 @@
 var express = require('express');
 var {getAllEvent,getEventById,postEvent,putEvent} = require('../controllers/eventControllers');
 const eventRouter = express.Router();
+const { isAuthenticatedUser } = require('../middleware/auth');
+const eventController=require('../controllers/eventControllers')
 
-eventRouter.get("/",getAllEvent);
-eventRouter.get('/:id',getEventById);
-eventRouter.post('/',postEvent);
-eventRouter.put('/:id',putEvent)
+
+eventRouter.get("/",eventController.getAllEvent);
+eventRouter.get('/:id',eventController.getEventById);
+eventRouter.post('/',isAuthenticatedUser,eventController.postEvent);
+eventRouter.put('/:id',isAuthenticatedUser,eventController.putEvent)
 
 module.exports = eventRouter;

@@ -8,7 +8,7 @@
               <input type="email" #email="ngModel" class="form-control" pattern="^[a-z0-9]{4,13}@[a-z]+\.[a-z\.]{2,6}$" [class.is-invalid]="email.invalid && email.touched"
                name="email" [(ngModel)]="emailId" required> 
               <small class="text-danger" [class.d-none]="email.valid || email.untouched">EmailId is required</small>
-                     <br><br>
+              <br><br>
     
             <label>Password</label>
               <input type="password" #password="ngModel" pattern="^([A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" class="form-control" required

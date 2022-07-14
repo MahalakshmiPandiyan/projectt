@@ -27,9 +27,24 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/features']);
   }
   logout(){
+    localStorage.removeItem('token');
     this.router.navigate(['/first']); 
   }
   organizer(){
     this.router.navigate(['/organizer']); 
+  }
+
+  addFeatures()
+  {
+    this.router.navigate(['/edit']);
+  }
+
+  editEventDetails()
+  {
+    this.router.navigate(['/event_display']);
+  }
+  addEventDetails()
+  {
+    this.router.navigate(['/addEventDetails']);
   }
 }

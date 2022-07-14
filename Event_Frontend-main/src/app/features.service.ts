@@ -43,6 +43,8 @@ getList(){
   return this.http.get(this.baseUrl);
 }
 postDetails(featuresForm:Features){
+  console.log("amount"+featuresForm.amount);
+  
   return this.http.post(this.baseUrl,featuresForm)
 }
 putEvent(eventForm:History,_id:string){

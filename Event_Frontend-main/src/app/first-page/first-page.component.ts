@@ -21,5 +21,10 @@ export class FirstPageComponent implements OnInit {
   register(){
     this.router.navigate(['/register']);
   }
- 
+  features(){
+    this.router.navigate(['/features_display']);
+  }
+  event(){
+    this.router.navigate(['/event_display']);
+  }
 }

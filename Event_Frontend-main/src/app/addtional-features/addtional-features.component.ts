@@ -13,7 +13,11 @@ import { FeaturesService } from '../features.service';
 
   export class AddtionalFeaturesComponent implements OnInit {
 
-    featuresForm:FormGroup|any;
+  featuresList:Features[]=[];
+  featuresForm:FormGroup|any;
+  message: any;
+  message1: any;
+  error:any;
    
  constructor(private router:Router,private route: ActivatedRoute,private features:FeaturesService,private formBuilder:FormBuilder) {
 
@@ -32,21 +36,42 @@ import { FeaturesService } from '../features.service';
      
      console.log("route _id : "+this._id);        
    });
-   this.onEdit(this._id);
+   console.log("len"+(this._id).length);
+
+   if(this._id.length==24)
+   {
+    this.onEdit(this._id);
+   }
+
  }
+
  onEdit(_id:any) {
    console.log("edit"+_id);
    this.features.getList();
    this.features.getUserId(this._id).subscribe((res)=>{
      console.log(res);
-     this.featuresForm.name=Object.values(res)[1];
-     this.featuresForm.amount=Object.values(res)[2];
-   })        
+     console.log(res.name);
+     
+    this.editFeatures(res)
+   },
+   (err) => {
+     this.error = err.message;
+     alert(err.error.message)
+
+   });     
 
  }
- backButton(){
-   this.router.navigate(['/home'])
+ editFeatures(featuresList:Features){
+
+  this.featuresForm.patchValue({
+    name:featuresList.name,
+    amount:featuresList.amount
+    
+  })
  }
+ backButton(){
+  this.router.navigate(['/home'])
+}
 
  tableDisplay(featuresForm:FormGroup) {
  // {
@@ -57,16 +82,29 @@ import { FeaturesService } from '../features.service';
      //Create New User
      this.features.postDetails(featuresForm.value).subscribe((data)=>{
        console.log(data);
-     })
+       this.message=Object.values(data)[1];
+       alert(this.message)
+     },
+     (err) => {
+       this.error = err.message;
+       alert(err.error.message)
+
+     });
  
-     alert("Details are added Successfully")
+    //  alert("Details are added Successfully")
    } 
    else {
      //Update User info
      this.features.putEvent(featuresForm.value,this._id).subscribe((res)=>{
-       console.log("update event info");
-     })
-     alert("Details are Updated Successfully")
+       console.log("update event info",res);
+       this.message1=Object.values(res)[1];
+       alert(this.message1)
+     },
+     (err) => {
+       this.error = err.message;
+       alert(err.error.message)
+
+     });
    }
    this.router.navigate(['/features'])
  }

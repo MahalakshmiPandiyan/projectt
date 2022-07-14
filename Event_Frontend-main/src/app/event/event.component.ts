@@ -15,14 +15,10 @@ import { UserService } from '../user.service';
 export class EventComponent implements OnInit {
   minDate:any=''
   today = new Date().toLocaleDateString()
-  // list:History={
-  //   _id: '', event_name: '', event_date: '', event_time: '', food: '', photography: '', decoration: '',
-  //   organiser: 'unassigned'
-  // }
-
   eventForm:FormGroup|any;
 
  
+  historyList:History[]=[]
   name: any;
   date:any;
   time:any;
@@ -36,8 +32,10 @@ export class EventComponent implements OnInit {
   role:string=''
   message: any;
   message2: any;
+  error:any=''
 
   constructor(private router:Router,private route: ActivatedRoute,private history:HistoryService,private userService:UserService,private formBuilder:FormBuilder) { 
+    this.role=this.userService.role;
 
     this.eventForm=this.formBuilder.group({
       event_name:new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z ]{1,15}$')]),
@@ -46,11 +44,10 @@ export class EventComponent implements OnInit {
       food:new FormControl('',Validators.required),
       decoration:new FormControl('',Validators.required),
       photography:new FormControl('',Validators.required),
-      organiser:new FormControl('',Validators.required)
+      organiser:new FormControl('')
     })
    
   }
-
   
   ngOnInit(): void {
     this.role=this.userService.role;
@@ -60,33 +57,38 @@ export class EventComponent implements OnInit {
       
       console.log("route _id : "+this._id);        
     });
-    // this.onEdit(this._id);
+    if(this._id.length==24)
+    {
+      this.onEdit(this._id);
+    }
     
    this.dateValidation();
      
   }
   
-  // onEdit(_id:any) {
-  //   console.log("edit"+_id);
-  //   this.history.getList();
-  //   this.history.getUserId(this._id).subscribe((res)=>{
-  //     console.log(res);
+  onEdit(_id:any) {
+    console.log("edit"+_id);
+    this.history.getList();
+    this.history.getUserId(this._id).subscribe((res)=>{
+      console.log(res);
+      this.editFeatures(res)
+    })        
+  }
 
+  editFeatures(historyList:History){
 
-  //     this.name=Object.values(res)[1];
-  //     this.date=Object.values(res)[2];
-  //     this.date=formatDate(res.event_date,'yyyy-MM-dd',this.locale)
-  //     this.time=Object.values(res)[3];
-  //     this.foodValue=Object.values(res)[4];
-  //     this.photo=Object.values(res)[5];
-  //     this.decorationValue=Object.values(res)[6];
-  //     this.organiserValue=Object.values(res)[7];
+    this.eventForm.patchValue({
+      event_name:historyList.event_name,
+      event_date:formatDate(historyList.event_date,'yyyy-MM-dd',this.locale),
+      event_time:historyList.event_time,
+      food:historyList.food,
+      decoration:historyList.decoration,
+      photography:historyList.photography,   
+      organiser:historyList.organiser,      
 
+    })
+   }
 
-  //   })        
-  // }
-
-  
   backButton(){
     this.router.navigate(['/home'])
   }
@@ -98,17 +100,25 @@ export class EventComponent implements OnInit {
         console.log(data);
         this.message=Object.values(data)[1];
          alert(this.message)
-      })
-      // console.log("id : " + this.list._id);
-      // console.log(this.list);
-    } 
+      },
+      (err) => {
+        this.error = err.message;
+        alert(err.error.message)
+
+      });
+        } 
     else {
       //Update User info
       this.history.putEvent(eventForm.value,this._id).subscribe((res)=>{
         console.log("update event info"+JSON.stringify(res));
         this.message2=Object.values(res)[1];
         alert(this.message2)
-      })
+      },
+      (err) => {
+        this.error = err.message;
+        alert(err.error.message)
+
+      });
     }
     this.router.navigate(['/home'])
   }

@@ -26,4 +26,13 @@ export class LoginService {
     // console.log("password : "+this.passwordValue);
 
     // return this.http.post(this.baseUrl ,`/${this.name}` + `/${this.passwordValue}`);
-  }}
+  }
+
+loggedIn(){
+  return !!localStorage.getItem('token');
+}
+
+getToken(){
+  return localStorage.getItem('token');
+}
+}

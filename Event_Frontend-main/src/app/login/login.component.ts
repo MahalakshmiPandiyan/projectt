@@ -11,47 +11,46 @@ import { UserService } from '../user.service';
 export class LoginComponent implements OnInit {
   error: any;
 
-  constructor(private router:Router,private route: ActivatedRoute,private userService:UserService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) { }
 
-  emailId:string="";
-  passwordValue:string='';
-  roleValue:string='';
-  newRole:string=''
+  emailId: string = "";
+  passwordValue: string = '';
+  roleValue: string = '';
+  newRole: string = ''
   ngOnInit(): void {
   }
-  dashBoard(userForm:NgForm){
-    this.userService.getDetails(this.emailId,this.passwordValue).subscribe((res)=>{      
+  dashBoard(userForm: NgForm) {
+    this.userService.getDetails(userForm.value).subscribe((res) => {
+      console.log("res"+JSON.stringify(res));
+      console.log(Object.values(res)[1] );
       
-      this.userService.getAdmin(this.emailId).subscribe((res1)=>{     
-        if(res==true){
-          if(Object.values(res1)[0]!=='admin')
-          {          
-            this.roleValue='user'
+      localStorage.setItem('token',Object.values(res)[0]);
+      this.userService.getAdmin(this.emailId).subscribe((res1) => {
+        if (Object.values(res)[1] === 'true') {
+          if (Object.values(res1)[0] !== 'admin') {
+            this.roleValue = 'user'
             console.warn(this.userService.getRole(this.roleValue));
             console.log(this.roleValue);
             this.router.navigate(['/home']);
           }
-          else
-          {
-            this.roleValue='admin'
+          else {
+            this.roleValue = 'admin'
             console.warn(this.userService.getRole(this.roleValue));
             console.log(this.roleValue);
             this.router.navigate(['/home']);
           }
         }
-        // else{
-        //   alert("Invalid Username or Password!!!!!!!")
-        // }   
+     
       });
     },
-    (err)=>{
-      this.error=err.message;
-      alert(err.error.message)
+      (err) => {
+        this.error = err.message;
+        alert(err.error.message)
 
-    });
+      });
 
   }
-  register(){
-      this.router.navigate(['/register']);
+  register() {
+    this.router.navigate(['/register']);
   }
 }

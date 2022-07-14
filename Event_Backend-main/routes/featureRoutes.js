@@ -1,12 +1,15 @@
 var express = require('express');
 var {getAllFeature,postFeature,putFeature,getFeatureById,deleteFeature} = require('../controllers/featureController');
 const featureRouter = express.Router();
+const { isAuthenticatedUser } = require('../middleware/auth');
+const featureController=require('../controllers/featureController')
 
-featureRouter.get("/",getAllFeature);
-featureRouter.get('/:id',getFeatureById);
-featureRouter.post('/',postFeature);
-featureRouter.put('/:id',putFeature)
-featureRouter.delete('/:id',deleteFeature);
+
+featureRouter.get("/",featureController.getAllFeature);
+featureRouter.get('/:id',isAuthenticatedUser,featureController.getFeatureById);
+featureRouter.post('/',isAuthenticatedUser,featureController.postFeature);
+featureRouter.put('/:id',isAuthenticatedUser,featureController.putFeature)
+featureRouter.delete('/:id',isAuthenticatedUser,featureController.deleteFeature);
 
 
 module.exports = featureRouter;

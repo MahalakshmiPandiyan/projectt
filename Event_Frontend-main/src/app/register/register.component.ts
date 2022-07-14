@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
 
   userForm:FormGroup|any
   message: any;
+  error: any;
  
   constructor(private router:Router,private route: ActivatedRoute,private loginSerice:LoginService,private userService:UserService,private formBuilder:FormBuilder) { 
 
@@ -41,13 +42,17 @@ export class RegisterComponent implements OnInit {
     
     this.loginSerice.getDetails(userForm.value).subscribe((res)=>{
       console.log("res register : "+JSON.stringify(res));
-      this.message=Object.values(res)[1];
+      
+      this.message=Object.values(res)[0];
       alert(this.message)
+    },
+    (err) => {
+      this.error = err.message;
+      alert(err.error.message)
+
     });
     this.roleValue='user'
-    console.warn(this.userService.getRole(this.roleValue));
-    console.log(this.roleValue);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
   }
   login(){
     this.router.navigate(['/login']);
