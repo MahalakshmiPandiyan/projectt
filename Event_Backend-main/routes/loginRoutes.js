@@ -1,5 +1,5 @@
-var express = require('express');
-var {getValues,getValuesById,checking,postValues} = require('../controllers/loginControllers');
+let express = require('express');
+let {getValues,getValuesById,checking,postValues} = require('../controllers/loginControllers');
 const loginController=require('../controllers/loginControllers')
 const loginRouter = express.Router();
 const { isAuthenticatedUser } = require('../middleware/auth');

@@ -106,7 +106,7 @@ import { FeaturesService } from '../features.service';
 
      });
    }
-   this.router.navigate(['/features'])
+   this.router.navigate(['/features_display'])
  }
  featuresValue(){
    console.warn(this.featuresForm.value);

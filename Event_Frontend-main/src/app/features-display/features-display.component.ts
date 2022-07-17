@@ -10,6 +10,9 @@ import { FeaturesService } from '../features.service';
 })
 export class FeaturesDisplayComponent implements OnInit {
   featuresList:Features[]=[]
+  token: any;
+  lengthToken: any;
+  error: any;
 
   constructor(private router:Router,private route: ActivatedRoute,private featureService:FeaturesService) { }
 
@@ -18,11 +21,26 @@ export class FeaturesDisplayComponent implements OnInit {
       this.featuresList=res as Features[]
       console.log(JSON.stringify(res));
     });
-  }
-  back()
-  {
-    this.router.navigate(['/home']);
+    this.token=localStorage.getItem('token')
+    this.lengthToken=this.token.length
 
+  }
+
+  delete(_id:string){
+    if (confirm('Are you sure to delete this record ?') == true) {
+    this.featureService.deleteUserId(_id).subscribe((res) => {
+      console.log(res);  
+    });
+    this.featureService.getList().subscribe((res)=>{
+      this.featuresList=res as Features[]
+      console.log(JSON.stringify(res));
+    },
+    (err) => {
+      this.error = err.message;
+      alert(err.error.message)
+
+    });
+  }
   }
 
 }

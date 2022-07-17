@@ -1,9 +1,9 @@
 const express = require('express');
-var router = express.Router();
-var ObjectId = require('mongoose').Types.ObjectId;
+const router = express.Router();
+const ObjectId = require('mongoose').Types.ObjectId;
 
 
-var { Event } = require('../models/event');
+const { Event } = require('../models/event');
 class eventController {
 
 static getAllEvent = async (req, res) => {
@@ -51,7 +51,7 @@ static putEvent = async (req, res) => {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id :`);
     console.log(req.params.id)
-    var event = {
+    let event = {
         event_name: req.body.event_name,
         event_date: req.body.event_date,
         event_time: req.body.event_time,

@@ -1,18 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
     <h2>Event Management System</h2>
+    <h1></h1>
     <button class="logout" (click)="logout()">Logout</button>
 </nav>
 
 <ng-container *ngIf="role=='user'">
-    <div class="outer">    
-        <div>
-            <img class="card-img-top" (click)="history()" src="assets/images/pic1.jpeg" alt="Card image cap">
-
-            <!-- <button class="button" (click)="history()" >Booking History</button> -->
+    <div class="container">    
+        <div class="card">
+            <img class="card-img-top" (click)="history()" src="assets/images/pic16.jpg" alt="Card image cap">
+            <div  class="first-txt"><strong>Booking History</strong></div>
         </div>
-        <div>
-            <button class="button" (click)="event()">Book Event</button>
+        <div class="card">
+            <img class="card-img-top"(click)="event()" src="assets/images/pic15.jpg" alt="Card image cap">
+            <div  class="first-txt"><strong>Book Event</strong></div>
         </div>
+        
     </div>
 </ng-container>
 

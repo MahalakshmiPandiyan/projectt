@@ -1,8 +1,8 @@
 const express = require('express');
-var router = express.Router();
+const router = express.Router();
 const { isAuthenticatedUser } = require('../middleware/auth');
 const { DisplayEvent } = require('../models/displayEvent');
-var ObjectId = require('mongoose').Types.ObjectId;
+const ObjectId = require('mongoose').Types.ObjectId;
 
 class displayEventController {
 
@@ -33,7 +33,7 @@ static getDisplayEventById = async (req, res) => {
     }
 };
 static postDisplayEvent= async (req, res) => {
-    var displayEvent = new DisplayEvent({
+    let displayEvent = new DisplayEvent({
         feature: req.body.feature,
         details: req.body.details
     });
@@ -52,7 +52,7 @@ static postDisplayEvent= async (req, res) => {
 static putDisplayEvent = async (req, res) => {
     if (!ObjectId.isValid(req.params.id))
         return res.status(400).send(`No record with given id :`);
-    var displayEvent = {
+    let displayEvent = {
         name: req.body.name,
         amount: req.body.amount
     };
@@ -62,7 +62,6 @@ static putDisplayEvent = async (req, res) => {
         });
 
     }
-    // else { res.status(400).statusText("error in  put features ") }
     catch (err) {
         return res.status(400).send("error in put Features ")
     }

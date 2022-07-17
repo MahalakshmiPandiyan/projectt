@@ -1,6 +1,6 @@
 const express = require('express');
-var router = express.Router();
-var ObjectId = require('mongoose').Types.ObjectId;
+const router = express.Router();
+const ObjectId = require('mongoose').Types.ObjectId;
 const { isAuthenticatedUser } = require('../middleware/auth');
 const { Feature } = require('../models/feature');
 
@@ -10,7 +10,7 @@ class featureController {
 static getAllFeature = async (req, res) => {
     try {
 
-        Feature.find((err, docs) => {
+        await Feature.find((err, docs) => {
             res.status(200).send(docs)
         });
     }
@@ -30,7 +30,6 @@ static getFeatureById = async (req, res) => {
             res.status(200).send(doc)
         });
     }
-    // else { res.status(400).send("error in get by Id in Features ") }
     catch (err) {
         return res.status(400).send("error in get by Id in Features ")
     }
@@ -48,7 +47,6 @@ static postFeature = async (req, res) => {
         });
 
     }
-    // else { res.status(400).statusText("error in post features ") }
     catch (err) {
         return res.status(400).send("error in post Features ")
     }
@@ -67,7 +65,6 @@ static putFeature = async (req, res) => {
         });
 
     }
-    // else { res.status(400).statusText("error in  put features ") }
     catch (err) {
         return res.status(400).send("error in put Features ")
     }

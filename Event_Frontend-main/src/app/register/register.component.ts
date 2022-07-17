@@ -94,4 +94,8 @@ export class RegisterComponent implements OnInit {
         console.log(data)
       })
     }
+    back(){
+      this.router.navigate(['/first']);
+  
+    }
 }

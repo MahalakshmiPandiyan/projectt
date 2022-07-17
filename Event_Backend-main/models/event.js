@@ -1,5 +1,5 @@
 const mongoose1=require('mongoose');
-var Event = mongoose1.model('Event',{
+let Event = mongoose1.model('Event',{
 
     event_name:{type:String},
     event_date:{type:Date},

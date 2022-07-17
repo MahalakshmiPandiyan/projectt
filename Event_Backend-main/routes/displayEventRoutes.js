@@ -1,4 +1,4 @@
-var express = require('express');
+const express = require('express');
 const displayEventRouter = express.Router();
 const { isAuthenticatedUser } = require('../middleware/auth');
 const displayEventController=require('../controllers/displayEventControllers')

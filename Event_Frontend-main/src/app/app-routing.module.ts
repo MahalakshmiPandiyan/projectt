@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EventComponent } from './event/event.component';
-import { FeaturesComponent } from './features/features.component';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -22,7 +21,6 @@ const routes: Routes = [
   {path:'venue',component:VenueComponent},
   {path:'table',component:TableComponent,canActivate:[AuthGuard]},
   {path:'event',component:EventComponent,canActivate:[AuthGuard]},
-  {path:'features',component:FeaturesComponent,canActivate:[AuthGuard]},
   {path:'edit',component:AddtionalFeaturesComponent,canActivate:[AuthGuard]},
   {path:'update-add/:_id',component:AddtionalFeaturesComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},

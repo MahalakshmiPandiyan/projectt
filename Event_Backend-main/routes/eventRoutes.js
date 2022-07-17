@@ -1,5 +1,5 @@
-var express = require('express');
-var {getAllEvent,getEventById,postEvent,putEvent} = require('../controllers/eventControllers');
+const express = require('express');
+const {getAllEvent,getEventById,postEvent,putEvent} = require('../controllers/eventControllers');
 const eventRouter = express.Router();
 const { isAuthenticatedUser } = require('../middleware/auth');
 const eventController=require('../controllers/eventControllers')

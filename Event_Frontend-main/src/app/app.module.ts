@@ -9,7 +9,6 @@ import { EventComponent } from './event/event.component';
 import { TableComponent } from './table/table.component';
 import { VenueComponent } from './venue/venue.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FeaturesComponent } from './features/features.component';
 import { OrganiserComponent } from './organiser/organiser.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
@@ -31,7 +30,6 @@ import { AddEventDetailsComponent } from './add-event-details/add-event-details.
     EventComponent,
     TableComponent,
     VenueComponent,
-    FeaturesComponent,
     OrganiserComponent,
     RegisterComponent,
     FirstPageComponent,

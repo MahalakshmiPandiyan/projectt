@@ -1,5 +1,5 @@
-var express = require('express');
-var {getAllFeature,postFeature,putFeature,getFeatureById,deleteFeature} = require('../controllers/featureController');
+const express = require('express');
+const {getAllFeature,postFeature,putFeature,getFeatureById,deleteFeature} = require('../controllers/featureController');
 const featureRouter = express.Router();
 const { isAuthenticatedUser } = require('../middleware/auth');
 const featureController=require('../controllers/featureController')
