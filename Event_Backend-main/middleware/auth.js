@@ -19,7 +19,7 @@ exports.isAuthenticatedUser = async (req, res, next) => {
         return res.status(401).send("Access denied.Please login");
 
     }
-    const userdata = jwt.verify(token,process.env.ACCESS_TOKEN)
+    const userdata = jwt.verify(token, process.env.ACCESS_TOKEN)
 
     if (!userdata) {
 

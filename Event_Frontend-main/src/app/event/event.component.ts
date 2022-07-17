@@ -43,11 +43,8 @@ export class EventComponent implements OnInit {
       event_name: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z ]{1,15}$')]),
       event_date: new FormControl('', [Validators.required]),
       event_time: new FormControl('', Validators.required),
-      food: new FormControl('', Validators.required),
-      decoration: new FormControl('', Validators.required),
-      photography: new FormControl('', Validators.required),
-      organiser: new FormControl(''), 
-      select:new FormControl('')
+      organiser: new FormControl(''),
+      features: new FormControl('')
     })
 
   }
@@ -95,10 +92,8 @@ export class EventComponent implements OnInit {
       event_name: historyList.event_name,
       event_date: formatDate(historyList.event_date, 'yyyy-MM-dd', this.locale),
       event_time: historyList.event_time,
-      food: historyList.food,
-      decoration: historyList.decoration,
-      photography: historyList.photography,
       organiser: historyList.organiser,
+      features: historyList.features
 
     })
   }
@@ -163,17 +158,12 @@ export class EventComponent implements OnInit {
   get event_time() {
     return this.eventForm.get('event_time')
   }
-  get food() {
-    return this.eventForm.get('food')
-  }
-  get photography() {
-    return this.eventForm.get('photography')
-  }
-  get decoration() {
-    return this.eventForm.get('decoration')
-  }
   get organiser() {
     return this.eventForm.get('organiser')
+  }
+  get features() {
+    return this.eventForm.get('features')
+
   }
 
   //tracking value changes in form
@@ -194,14 +184,8 @@ export class EventComponent implements OnInit {
       console.log(data)
     })
   }
-
-  trackFoodChange() {
-    this.eventForm.get("food").valueChanges.subscribe((data: any) => {
-      console.log(data)
-    })
-  }
-  trackPhotoChange() {
-    this.eventForm.get("photography").valueChanges.subscribe((data: any) => {
+  trackFeaturesChange() {
+    this.eventForm.get("features").valueChanges.subscribe((data: any) => {
       console.log(data)
     })
   }
@@ -211,12 +195,5 @@ export class EventComponent implements OnInit {
       console.log(data)
     })
   }
-  trackDecorationChange() {
-    this.eventForm.get("decoration").valueChanges.subscribe((data: any) => {
-      console.log(data)
-    })
-  }
-
-
 
 }

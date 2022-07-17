@@ -22,38 +22,6 @@
                 <span *ngIf="event_time.hasError('required') && event_time.touched" class="error"><small>event_time is
                         required</small></span>
             </div>
-            <div class="form-group">
-                <label for="photo">Do you want Photography?</label>
-                <select (change)="trackPhotoChange()" name="photography" formControlName="photography">
-                    <option value="" hidden>Choose yes/no</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-                <span *ngIf="photography.hasError('required') && photography.touched" class="error"><small>photography
-                        is required</small></span>
-            </div>
-            <div class="form-group">
-                <label for="role">Do you want Food?</label>
-                <select (change)="trackFoodChange()" name="food" id="food" formControlName="food">
-                    <option value="" hidden>Choose yes/no</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-                <span *ngIf="food.hasError('required') && food.touched" class="error"><small>food is
-                        required</small></span>
-            </div>
-
-            <div class="form-group">
-                <label for="decoration">Do you want decoration?</label>
-                <select (change)="trackDecorationChange()" name="decoration" id="decoration"
-                    formControlName="decoration">
-                    <option value="" hidden>Choose yes/no</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-                <span *ngIf="decoration.hasError('required') && decoration.touched" class="error"><small>decoration is
-                        required</small></span>
-            </div>
 
             <div class="form-group" *ngIf="role!='user'">
                 <label>Event Organzier</label>
@@ -65,9 +33,9 @@
 
     
             <div> 
-            <label>Example label</label>
-            <select class="select" name="select" formControlName="select" id="select" multiple>
-                    <option *ngFor="let item of featuresList" [value]="item.name">   {{item.name}}</option>
+            <label>Select Additional Features</label>
+            <select (change)="trackFeaturesChange()"  class="select" name="features" formControlName="features" id="features" multiple>
+                    <option *ngFor="let item of featuresList" [value]="item.name"> {{item.name}}</option>
             </select>
 
             </div>

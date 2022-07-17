@@ -5,10 +5,7 @@
             <th>Event Name</th>
             <th>Date</th>
             <th>Timings</th>
-            <th>Food</th>
-            <th>Photography</th>
-            <th>decoration</th>
-            <th>Organsier</th>
+            <th>Features</th>
             <th>Edit</th>
         </thead>
         <tbody>
@@ -17,9 +14,7 @@
                 <td>{{history.event_name}}</td>
                 <td>{{history.event_date.slice(0,10)}}</td>
                 <td>{{history.event_time}}</td>
-                <td>{{history.food}}</td>
-                <td>{{history.photography}}</td>
-                <td>{{history.decoration}}</td>
+                <td>{{history.features}}</td>
                 <td>{{history.organiser}}</td>
                 <td><button  class="btn btn-info"  [routerLink]="['/update-edit',history._id]">Edit</button></td>
             </tr>
