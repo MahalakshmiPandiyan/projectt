@@ -10,7 +10,6 @@ import { TableComponent } from './table/table.component';
 import { VenueComponent } from './venue/venue.component';
 import { AddtionalFeaturesComponent } from './addtional-features/addtional-features.component';
 import { AuthGuard } from './auth.guard';
-import { GalleryComponent } from './gallery/gallery.component';
 import { EventDisplayComponent } from './event-display/event-display.component';
 import { FeaturesDisplayComponent } from './features-display/features-display.component';
 import { AddEventDetailsComponent } from './add-event-details/add-event-details.component';
@@ -28,7 +27,6 @@ const routes: Routes = [
   {path:'update-edit/:_id',component:EventComponent,canActivate:[AuthGuard]},
   {path:'register',component:RegisterComponent},
   {path:'first',component:FirstPageComponent},
-  {path:'gallery',component:GalleryComponent},
   {path:'event_display',component:EventDisplayComponent},
   {path:'features_display',component:FeaturesDisplayComponent},
   {path:'addEventDetails',component:AddEventDetailsComponent},

@@ -17,7 +17,6 @@ import { AddtionalFeaturesComponent } from './addtional-features/addtional-featu
 import { LoginService } from './login.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
-import { GalleryComponent } from './gallery/gallery.component';
 import { EventDisplayComponent } from './event-display/event-display.component';
 import { FeaturesDisplayComponent } from './features-display/features-display.component';
 import { AddEventDetailsComponent } from './add-event-details/add-event-details.component';
@@ -34,7 +33,6 @@ import { AddEventDetailsComponent } from './add-event-details/add-event-details.
     RegisterComponent,
     FirstPageComponent,
     AddtionalFeaturesComponent,
-    GalleryComponent,
     EventDisplayComponent,
     FeaturesDisplayComponent,
     AddEventDetailsComponent,
