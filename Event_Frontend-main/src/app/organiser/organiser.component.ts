@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HistoryService } from '../history.service';
-import { History } from '../history';
-import { UserService } from '../user.service';
+import { HistoryService } from '../service/history.service';
+import { History } from '../service/history';
+import { UserService } from '../service/user.service';
 
 
 @Component({
@@ -18,10 +18,7 @@ export class OrganiserComponent implements OnInit {
   ngOnInit(): void {
     this.role=this.userService.role;
     this.historyService.getList().subscribe((res)=>{
-      this.list=res as History[]
-
-      console.log("list : "+JSON.stringify(res));
-      
+      this.list=res as History[]      
     });  }
   back()
   {

@@ -2,11 +2,11 @@ import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { History } from '../history';
-import { HistoryService } from '../history.service';
-import { UserService } from '../user.service';
-import { FeaturesService } from '../features.service';
-import { Features } from '../features';
+import { History } from '../service/history';
+import { HistoryService } from '../service/history.service';
+import { UserService } from '../service/user.service';
+import { FeaturesService } from '../service/features.service';
+import { Features } from '../service/features';
 
 @Component({
   selector: 'app-event',
@@ -16,25 +16,21 @@ import { Features } from '../features';
 })
 export class EventComponent implements OnInit {
   minDate: any = ''
-  today = new Date().toLocaleDateString()
   eventForm: FormGroup | any;
 
   historyList: History[] = []
-  name: any;
+  name: string='';
   date: any;
-  time: any;
-  foodValue: any;
-  photo: any;
-  decorationValue: any;
-  organiserValue: any;
+  time: string='';
+  organiserValue: string='';
   locale = 'en-US'
   featuresList: Features[] = []
 
   _id: string = '';
   role: string = ''
-  message: any;
-  message2: any;
-  error: any = ''
+  message: string='';
+  message2: string='';
+  error: string = ''
 
   constructor(private router: Router, private route: ActivatedRoute, private history: HistoryService, private userService: UserService, private formBuilder: FormBuilder, private featureService: FeaturesService) {
     this.role = this.userService.role;
@@ -53,27 +49,18 @@ export class EventComponent implements OnInit {
     this.role = this.userService.role;
     this.featureService.getList().subscribe((data) => {
       this.featuresList = data as Features[]
-      console.log("list" + JSON.stringify(this.featuresList));
     })
     this.route.params.subscribe(params => {
       this._id = params['_id']
-
-      console.log("route _id : " + this._id);
     });
     if (this._id.length == 24) {
       this.onEdit(this._id);
     }
-
-
-
     this.nameList();
-
     this.dateValidation();
-
   }
   nameList() {
     for (let item of this.featuresList) {
-      console.log("ghjk" + item.name);
     }
   }
 
@@ -81,7 +68,6 @@ export class EventComponent implements OnInit {
     console.log("edit" + _id);
     this.history.getList();
     this.history.getUserId(this._id).subscribe((res) => {
-      console.log(res);
       this.editFeatures(res)
     })
   }
@@ -102,7 +88,6 @@ export class EventComponent implements OnInit {
     this.router.navigate(['/home'])
   }
   tableDisplay(eventForm: FormGroup) {
-    console.log('form' + JSON.stringify(eventForm.value));
 
     if (!this._id) {
       //Create New User
@@ -120,7 +105,6 @@ export class EventComponent implements OnInit {
     else {
       //Update User info
       this.history.putEvent(eventForm.value, this._id).subscribe((res) => {
-        console.log("update event info" + JSON.stringify(res));
         this.message2 = Object.values(res)[1];
         alert(this.message2)
       },
@@ -134,17 +118,17 @@ export class EventComponent implements OnInit {
   }
 
   dateValidation() {
-    var date: any = new Date();
+    let date: any = new Date();
 
-    var toDate: any = date.getDate();
+    let toDate: any = date.getDate();
     if (toDate < 10) {
       toDate = "0" + toDate;
     }
-    var month = date.getMonth() + 1;
+    let month = date.getMonth() + 1;
     if (month < 10) {
       month = '0' + month;
     }
-    var year = date.getFullYear();
+    let year = date.getFullYear();
     this.minDate = year + "-" + month + "-" + toDate;
     return true;
   }
@@ -163,37 +147,5 @@ export class EventComponent implements OnInit {
   }
   get features() {
     return this.eventForm.get('features')
-
   }
-
-  //tracking value changes in form
-  trackNameChange() {
-    this.eventForm.get("event_name").valueChanges.subscribe((data: any) => {
-      console.log(data)
-    })
-  }
-
-  trackDateChange() {
-    this.eventForm.get("event_date").valueChanges.subscribe((data: any) => {
-      console.log(data)
-    })
-  }
-
-  trackTimeChange() {
-    this.eventForm.get("event_time").valueChanges.subscribe((data: any) => {
-      console.log(data)
-    })
-  }
-  trackFeaturesChange() {
-    this.eventForm.get("features").valueChanges.subscribe((data: any) => {
-      console.log(data)
-    })
-  }
-
-  trackOranginserChange() {
-    this.eventForm.get("organiser").valueChanges.subscribe((data: any) => {
-      console.log(data)
-    })
-  }
-
 }

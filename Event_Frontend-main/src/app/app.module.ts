@@ -14,7 +14,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { FirstPageComponent } from './first-page/first-page.component';
 import { AddtionalFeaturesComponent } from './addtional-features/addtional-features.component';
-import { LoginService } from './login.service';
+import { LoginService } from './service/login.service';
 import { AuthGuard } from './auth.guard';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { EventDisplayComponent } from './event-display/event-display.component';
@@ -44,10 +44,10 @@ import { AddEventDetailsComponent } from './add-event-details/add-event-details.
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [LoginService,AuthGuard,{
-    provide:HTTP_INTERCEPTORS,
-    useClass:TokenInterceptorService,
-    multi:true
+  providers: [LoginService, AuthGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
   }],
   bootstrap: [AppComponent]
 })

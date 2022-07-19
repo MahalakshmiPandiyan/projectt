@@ -13,11 +13,6 @@ export class LoginService {
   constructor(private http:HttpClient){}
   // postLogin(emp)
   getDetails(userForm:Login){
-
-    console.log("email id: "+userForm.email);
-    console.log("name : login "+userForm.phone);
-    
-    
     return this.http.post(this.baseUrl,userForm)
 
     // this.name=name;

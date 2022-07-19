@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { ThisReceiver } from '@angular/compiler';
-import { LoginService } from './login.service';
+import { LoginService } from './service/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class TokenInterceptorService implements HttpInterceptor {
     })
     return next.handle(tokenizedReq).pipe(
       catchError((error)=>{
-        alert(error.message)
+        // alert(error.message)
         return throwError(error)
       })
     )

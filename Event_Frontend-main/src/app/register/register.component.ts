@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm,Validators,ReactiveFormsModule ,FormControl} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoginService } from '../login.service';
-import { UserService } from '../user.service';
+import { LoginService } from '../service/login.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-register',
@@ -13,8 +13,8 @@ import { UserService } from '../user.service';
 export class RegisterComponent implements OnInit {
 
   userForm:FormGroup|any
-  message: any;
-  error: any;
+  message: string='';
+  error: string='';
  
   constructor(private router:Router,private route: ActivatedRoute,private loginSerice:LoginService,private userService:UserService,private formBuilder:FormBuilder) { 
 
@@ -26,12 +26,7 @@ export class RegisterComponent implements OnInit {
 
     });
   }
-  // name:string=''
-  // passwordValue:string=''
-  // ConfirmpasswordValue:string=''
   roleValue:string='';
-  // emailId:string='';
-  // phoneNum:string='';
   output:string=''
 
   ngOnInit(): void {
@@ -40,9 +35,7 @@ export class RegisterComponent implements OnInit {
 
   register(userForm:FormGroup){
     
-    this.loginSerice.getDetails(userForm.value).subscribe((res)=>{
-      console.log("res register : "+JSON.stringify(res));
-      
+    this.loginSerice.getDetails(userForm.value).subscribe((res)=>{      
       this.message=Object.values(res)[0];
       alert(this.message)
     },
@@ -70,32 +63,8 @@ export class RegisterComponent implements OnInit {
     return this.userForm.get('phone')
   }
 
-  
-    //tracking value changes in form
-    trackNameChange(){
-      this.userForm.get("event_name").valueChanges.subscribe((data: any)=>{
-        console.log(data)
-      })
-    }
 
-    trackPasswordChange(){
-      this.userForm.get("password").valueChanges.subscribe((data: any)=>{
-        console.log(data)
-      })
-    }
-
-    trackEmailChange(){
-      this.userForm.get("email").valueChanges.subscribe((data: any)=>{
-        console.log(data)
-      })
-    }
-    trackPhoneChange(){
-      this.userForm.get("phone").valueChanges.subscribe((data: any)=>{
-        console.log(data)
-      })
-    }
     back(){
-      this.router.navigate(['/first']);
-  
+      this.router.navigate(['/first']);  
     }
 }

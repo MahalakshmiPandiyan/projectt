@@ -7,32 +7,32 @@ const { Event } = require('../models/event');
 class eventController {
 
     static getAllEvent = (req, res) => {
-        try {
-            Event.find((err, doc) => {
+        Event.find((err, doc) => {
+            if (!err) {
                 res.status(200).send(doc)
-            });
-        }
-        catch (err) {
-            return res.status(404).send("error in get event ")
-        }
-
+            }
+            else {
+                res.status(404).send("error in get event ")
+            }
+        });
     }
 
     static getEventById = (req, res) => {
         if (!ObjectId.isValid(req.params.id))
             return res.status(404).send(`No record with given id `);
-        try {
-            Event.findById(req.params.id, (err, doc) => {
+
+        Event.findById(req.params.id, (err, doc) => {
+            if (!err) {
                 res.status(200).send(doc)
-            });
-        }
-        catch (err) {
-            return res.status(404).send("error in get by Id in Features ")
-        }
+            }
+            else {
+                res.status(404).send("error in get by Id in Features ")
+            }
+        });
     };
 
-    static postEvent = async (req, res) => {
-        var event = new Event({
+    static postEvent = (req, res) => {
+        const event = new Event({
             event_name: req.body.event_name,
             event_date: req.body.event_date,
             event_time: req.body.event_time,
@@ -40,15 +40,14 @@ class eventController {
             organiser: "unassigned"
         });
 
-        try {
-            event.save((err, doc) => {
-                if (!err) {
-                    res.status(200).send({ doc, message: 'Successfully Registered Your Event!!!!!!!!' })
-                }
-            });
-        }
-
-        catch (err) { res.status(404).status("error in post put event ") }
+        event.save((err, doc) => {
+            if (!err) {
+                res.status(200).send({ doc, message: 'Successfully Registered Your Event!!!!!!!!' })
+            }
+            else {
+                res.status(404).status("error in post put event ")
+            }
+        });
     };
 
 
@@ -64,14 +63,14 @@ class eventController {
             features: req.body.features
         };
         console.log("event", event);
-        try {
-            Event.findByIdAndUpdate(req.params.id, { $set: event }, { new: true }, (err, doc) => {
+        Event.findByIdAndUpdate(req.params.id, { $set: event }, { new: true }, (err, doc) => {
+            if (!err) {
                 res.status(200).send({ doc, message: 'Successfully Updated ' });
-            })
-
-        }
-        catch (err) { res.status(404).statusText("error in save put event ") };
-
+            }
+            else {
+                res.status(404).statusText("error in save put event ")
+            };
+        })
     };
 }
 module.exports = eventController

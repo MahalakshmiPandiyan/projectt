@@ -7,83 +7,83 @@ const { Feature } = require('../models/feature');
 class featureController {
 
 
-    static getAllFeature = async (req, res) => {
-        try {
-
-            Feature.find((err, docs) => {
+    static getAllFeature = (req, res) => {
+        Feature.find((err, docs) => {
+            if (!err) {
                 res.status(200).send(docs)
-            });
-        }
-        catch (err) {
-            return res.status(404).send("error in get feature ")
-        }
+
+            }
+            else {
+                return res.status(404).send("error in get feature ")
+            }
+        });
     };
 
 
 
-    static getFeatureById = async (req, res) => {
+    static getFeatureById = (req, res) => {
 
         if (!ObjectId.isValid(req.params.id))
             return res.status(404).send(`No record with given id `);
-        try {
-            Feature.findById(req.params.id, (err, doc) => {
+        Feature.findById(req.params.id, (err, doc) => {
+            if (!err) {
                 res.status(200).send(doc)
-            });
-        }
-        catch (err) {
-            return res.status(404).send("error in get by Id in Features ")
-        }
+            }
+            else {
+                return res.status(404).send("error in get by Id in Features ")
+            }
+        });
+
+
     };
 
-    static postFeature = async (req, res) => {
-        var feature = new Feature({
+    static postFeature = (req, res) => {
+        const feature = new Feature({
             name: req.body.name,
             amount: req.body.amount
         });
-        try {
-
-            feature.save((err, doc) => {
+        feature.save((err, doc) => {
+            if (!err) {
                 res.status(200).send({ doc, message: 'Successfully Added New Features!!!!!!!!' })
-            });
+            }
+            else {
+                return res.status(404).send("error in post Features ")
+            }
+        });
 
-        }
-        catch (err) {
-            return res.status(404).send("error in post Features ")
-        }
+
     };
 
-    static putFeature = async (req, res) => {
+    static putFeature = (req, res) => {
         if (!ObjectId.isValid(req.params.id))
             return res.status(404).send(`No record with given id :`);
-        var event = {
+        const event = {
             name: req.body.name,
             amount: req.body.amount
         };
-        try {
-            Feature.findByIdAndUpdate(req.params.id, { $set: event }, { new: true }, (err, doc) => {
+        Feature.findByIdAndUpdate(req.params.id, { $set: event }, { new: true }, (err, doc) => {
+            if (!err) {
                 res.status(200).send({ doc, message: 'Features are Successfully Updated!!!!!!!!' })
-            });
-
-        }
-        catch (err) {
-            return res.status(404).send("error in put Features ")
-        }
+            }
+            else {
+                return res.status(404).send("error in put Features ")
+            }
+        });
     };
 
 
-    static deleteFeature = async (req, res) => {
+    static deleteFeature = (req, res) => {
         if (!ObjectId.isValid(req.params.id))
             return res.status(404).send(`No record with the given id : $(req.params.id)`);
-        try {
 
-            Feature.findByIdAndRemove(req.params.id, (err, data) => {
+        Feature.findByIdAndRemove(req.params.id, (err, data) => {
+            if (!err) {
                 res.status(200).send(data)
-            });
-        }
-        catch (err) {
-            return res.status(404).send("error in delete Features ")
-        }
-
+            }
+            else {
+                return res.status(404).send("error in delete Features ")
+            }
+        });
     };
 }
 module.exports = featureController;

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../user.service';
-
+import { UserService } from '../service/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,39 +20,37 @@ export class LoginComponent implements OnInit {
   }
   dashBoard(userForm: NgForm) {
     this.userService.getDetails(userForm.value).subscribe((res) => {
-      console.log("res"+JSON.stringify(res));
-      console.log(Object.values(res)[1] );
-      
-      localStorage.setItem('token',Object.values(res)[0]);
+      localStorage.setItem('token', Object.values(res)[0]);
       this.userService.getAdmin(this.emailId).subscribe((res1) => {
+        console.log("Object.values(res1)[0]"+Object.values(res1)[0]);
+        
         if (Object.values(res)[1] === 'true') {
           if (Object.values(res1)[0] !== 'admin') {
-            this.roleValue = 'user'
-            console.warn(this.userService.getRole(this.roleValue));
-            console.log(this.roleValue);
+            this.roleValue='user'
+            this.userService.getRole(this.roleValue)
             this.router.navigate(['/home']);
+            console.log("role"+this.roleValue);
+
           }
           else {
             this.roleValue = 'admin'
-            console.warn(this.userService.getRole(this.roleValue));
-            console.log(this.roleValue);
+            this.userService.getRole(this.roleValue)
             this.router.navigate(['/home']);
+            console.log("role"+this.roleValue);
           }
         }
-     
-      });
-    },
-      (err) => {
-        this.error = err.message;
-        console.log(this.error);
-        alert(err.error.message)
-      });
+      })
+    }, (err) => {
+      this.error = err.message;
+      alert(err.error.message)
+
+    });
 
   }
   register() {
     this.router.navigate(['/register']);
   }
-  back(){
+  back() {
     this.router.navigate(['/first']);
 
   }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { History } from '../history';
-import { HistoryService } from '../history.service';
+import { History } from '../service/history';
+import { HistoryService } from '../service/history.service';
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',

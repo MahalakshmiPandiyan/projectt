@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../user.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-home',
@@ -13,8 +13,8 @@ export class HomeComponent implements OnInit {
 
   role:string=''
   ngOnInit(): void {
-    this.role=this.userService.role;
-    console.log(this.role);
+    this.role=this.userService.role;    
+    console.log("this.role"+this.role);
     
   }
   history(){

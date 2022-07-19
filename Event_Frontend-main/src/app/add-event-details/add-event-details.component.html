@@ -3,15 +3,15 @@
         <form [formGroup]="featuresDetails">
             <div class="form-group">
                 <label>Features</label><br>
-                <input type="text" formControlName="feature" (change)="trackFeatureChange()" placeholder="Enter Features"> 
+                <input type="text" formControlName="feature" placeholder="Enter Features"> 
                 <span *ngIf="feature.hasError('required') && feature.touched" class="error"><small>Features is required</small></span>
                 <span *ngIf="feature.hasError('pattern')" class="error"><small>Fullname must contain only alphabets</small></span>           
              </div>
             <div class="form-group">
                 <label>Details</label><br>
-                <input type="text"  formControlName="details" (change)="trackDetailsChange()" placeholder="Enter Description"> 
-                <span *ngIf="details.hasError('required') && details.touched" class="error"><small>Amount is required</small></span><br><br>
-                <!-- <span *ngIf="amount.hasError('pattern')" class="error"><small>Amount must contain only numbers</small></span>             -->
+                <input type="text"  formControlName="details" placeholder="Enter Description"> 
+                <span *ngIf="details.hasError('required') && details.touched" class="error"><small>Amount is required</small></span>
+                <span *ngIf="details.hasError('pattern')" class="error"><small>Details must contain only alphabets</small></span>            
             </div>
             <br>
             <button (click)="backButton()" type="submit" class="btn btn-primary">Back</button>

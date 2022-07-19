@@ -4,21 +4,21 @@
         <form [formGroup]="userForm">
             <h3>Register Form</h3>
             <label>Name</label>
-            <input type="text" id="nameValue" name="nameValue" formControlName="nameValue" placeholder="Enter your Name" (change)="trackNameChange()"> 
+            <input type="text" id="nameValue" name="nameValue" formControlName="nameValue" placeholder="Enter your Name"> 
             <span *ngIf="nameValue.hasError('required') && nameValue.touched" class="error"><small>nameValue is required</small></span>
             <span *ngIf="nameValue.hasError('pattern')" class="error"><small>nameValue must contain only alphabets</small></span>                           
 
             <br>
     
             <label>Password</label>
-              <input type="password" name="password" formControlName="password" id="password" (change)="trackPasswordChange()" placeholder="Enter your Password">
+              <input type="password" name="password" formControlName="password" id="password" placeholder="Enter your Password">
               <span *ngIf="password.hasError('required') && password.touched" class="error"><small>event_name is required</small></span>
               <span *ngIf="password.hasError('pattern')" class="error"><small>Password atleast 8 character,1 lower alpha,1 upper alpha,1 special characters,1 number</small></span>                           
               <br>
 
 
               <label>Email ID</label>
-              <input type="email" name="email" id="email" formControlName="email" (change)="trackEmailChange()" placeholder="Enter your EmailId"> 
+              <input type="email" name="email" id="email" formControlName="email" placeholder="Enter your EmailId"> 
               <!-- <small class="text-danger" [class.d-none]="email.valid || email.untouched">EmailId is required</small> -->
               <span *ngIf="email.hasError('required') && email.touched" class="error"><small>event_name is required</small></span>
               <span *ngIf="email.hasError('pattern')" class="error"><small>Invalid Email Id</small></span>                           
@@ -26,7 +26,7 @@
 
                 
                 <label>Phone</label>
-                <input type="text" name="phone" id="phone" formControlName="phone" (change)="trackPhoneChange()" placeholder="Enter your Phone Number"> 
+                <input type="text" name="phone" id="phone" formControlName="phone" placeholder="Enter your Phone Number"> 
                 <!-- <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone number should be 10 digits</small> -->
                 <span *ngIf="phone.hasError('required') && phone.touched" class="error"><small>event_name is required</small></span>
                 <span *ngIf="phone.hasError('pattern')" class="error"><small>Password atleast 8 character,1 lower alpha,1 uppe</small></span>                           
