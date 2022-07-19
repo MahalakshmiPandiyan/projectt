@@ -19,10 +19,6 @@ export class EventComponent implements OnInit {
   eventForm: FormGroup | any;
 
   historyList: History[] = []
-  name: string='';
-  date: any;
-  time: string='';
-  organiserValue: string='';
   locale = 'en-US'
   featuresList: Features[] = []
 
@@ -91,9 +87,9 @@ export class EventComponent implements OnInit {
 
     if (!this._id) {
       //Create New User
-      this.history.postDetails(eventForm.value).subscribe((data) => {
+      this.history.postDetails(eventForm.value).subscribe((data:any) => {
         console.log(data);
-        this.message = Object.values(data)[1];
+        this.message =data['message'];
         alert(this.message)
       },
         (err) => {
@@ -104,8 +100,8 @@ export class EventComponent implements OnInit {
     }
     else {
       //Update User info
-      this.history.putEvent(eventForm.value, this._id).subscribe((res) => {
-        this.message2 = Object.values(res)[1];
+      this.history.putEvent(eventForm.value, this._id).subscribe((res:any) => {
+        this.message2 = res['message'];
         alert(this.message2)
       },
         (err) => {
@@ -115,6 +111,10 @@ export class EventComponent implements OnInit {
         });
     }
     this.router.navigate(['/home'])
+  }
+  back(){
+        this.router.navigate(['/home'])
+
   }
 
   dateValidation() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import { UserService } from '../service/user.service';
 export class LoginComponent implements OnInit {
   error: any;
 
-  constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService) { }
 
   emailId: string = "";
   passwordValue: string = '';
@@ -19,13 +19,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
   dashBoard(userForm: NgForm) {
-    this.userService.getDetails(userForm.value).subscribe((res) => {
-      localStorage.setItem('token', Object.values(res)[0]);
-      this.userService.getAdmin(this.emailId).subscribe((res1) => {
-        console.log("Object.values(res1)[0]"+Object.values(res1)[0]);
-        
-        if (Object.values(res)[1] === 'true') {
-          if (Object.values(res1)[0] !== 'admin') {
+    this.userService.getDetails(userForm.value).subscribe((res:any) => {
+      localStorage.setItem('token', res['token']);
+      this.userService.getAdmin(this.emailId).subscribe((res1:any) => {
+
+        if (res['message'] === 'true') {
+          if (res1['role'] !== 'admin') {
             this.roleValue='user'
             this.userService.getRole(this.roleValue)
             this.router.navigate(['/home']);

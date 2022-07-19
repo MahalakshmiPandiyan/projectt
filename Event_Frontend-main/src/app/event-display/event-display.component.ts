@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { DisplayEventService } from '../service/display-event.service';
 import { display_event } from '../service/display_event';
 
@@ -15,14 +15,15 @@ export class EventDisplayComponent implements OnInit {
   lengthToken:number=0
   error: string='';
 
-  constructor(private router:Router,private route: ActivatedRoute,private displayService:DisplayEventService) { }
+  constructor(private router:Router,private displayService:DisplayEventService) { }
 
   ngOnInit(): void {
     this.displayService.getList().subscribe((res)=>{
       this.displayEvent=res as display_event[]
+          });
       this.token=localStorage.getItem('token')
       this.lengthToken=this.token.length 
-    });
+
   }
   
   backButton(){
@@ -39,6 +40,7 @@ export class EventDisplayComponent implements OnInit {
       this.error = err.message;
       alert(err.error.message)
     });
+    this.router.navigate(['/event_display'])
   }
   }
 

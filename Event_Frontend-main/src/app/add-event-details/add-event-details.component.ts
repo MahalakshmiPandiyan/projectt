@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray, FormGroup, NgForm, Validators, PatternValidator, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DisplayEventService } from '../service/display-event.service';
 import { display_event } from '../service/display_event';
@@ -58,8 +58,8 @@ export class AddEventDetailsComponent implements OnInit {
   tableDisplay(add_details: FormGroup) {
     if (!this._id) {
       //Create New User
-      this.displayService.postDetails(add_details.value).subscribe((data) => {
-        this.message = Object.values(data)[1];
+      this.displayService.postDetails(add_details.value).subscribe((data:any) => {
+        this.message = data['message'];
         alert(this.message)
       },
         (err) => {
@@ -69,8 +69,8 @@ export class AddEventDetailsComponent implements OnInit {
     }
     else {
       //Update User info
-      this.displayService.putEvent(add_details.value, this._id).subscribe((res) => {
-        this.message1 = Object.values(res)[1];
+      this.displayService.putEvent(add_details.value, this._id).subscribe((res:any) => {
+        this.message1 = res['message'];;
         alert(this.message1)
       },
         (err) => {

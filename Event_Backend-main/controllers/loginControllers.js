@@ -35,7 +35,7 @@ class loginController {
             if (doc[0].email === req.params.email && doc[0].password === req.params.passwordVaule) {
                 let payload = { subject: doc._id };
                 let token = jwt.sign(payload, process.env.ACCESS_TOKEN);
-                res.status(200).send({ token, message: 'true' });
+                res.status(200).json({ token, message: 'true' });
             }
             else {
                 res.status(404).send({ message: "Incorret Username or Password" });

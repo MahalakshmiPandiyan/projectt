@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { History } from '../service/history';
 import { HistoryService } from '../service/history.service';
 @Component({
@@ -9,7 +9,7 @@ import { HistoryService } from '../service/history.service';
 })
 export class TableComponent implements OnInit {
   list:History[]=[]
-  constructor(private router:Router,private route: ActivatedRoute,private historyService:HistoryService) { }
+  constructor(private router:Router,private historyService:HistoryService) { }
 
   ngOnInit(): void {
     this.historyService.getList().subscribe((res)=>{

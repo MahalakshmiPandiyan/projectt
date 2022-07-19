@@ -54,10 +54,9 @@ class displayEventController {
         if (!ObjectId.isValid(req.params.id))
             return res.status(404).send(`No record with given id :`);
         let displayEvent = {
-            name: req.body.name,
-            amount: req.body.amount
+            feature: req.body.feature,
+            details: req.body.details
         };
-
         DisplayEvent.findByIdAndUpdate(req.params.id, { $set: displayEvent }, { new: true }, (err, doc) => {
             if (!err) {
                 res.status(200).send({ doc, message: 'Features are Successfully Updated!!!!!!!!' })

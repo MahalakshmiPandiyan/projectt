@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm,Validators,ReactiveFormsModule ,FormControl} from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup,Validators ,FormControl} from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from '../service/login.service';
-import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-register',
@@ -16,7 +15,7 @@ export class RegisterComponent implements OnInit {
   message: string='';
   error: string='';
  
-  constructor(private router:Router,private route: ActivatedRoute,private loginSerice:LoginService,private userService:UserService,private formBuilder:FormBuilder) { 
+  constructor(private router:Router,private loginSerice:LoginService,private formBuilder:FormBuilder) { 
 
     this.userForm = this.formBuilder.group({
       nameValue:new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z ]{1,15}$')]),
@@ -35,8 +34,8 @@ export class RegisterComponent implements OnInit {
 
   register(userForm:FormGroup){
     
-    this.loginSerice.getDetails(userForm.value).subscribe((res)=>{      
-      this.message=Object.values(res)[0];
+    this.loginSerice.getDetails(userForm.value).subscribe((res:any)=>{      
+      this.message=res['message'];
       alert(this.message)
     },
     (err) => {

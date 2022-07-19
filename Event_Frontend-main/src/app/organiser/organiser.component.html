@@ -1,7 +1,6 @@
 <div class="card-product">
     <table class="table table-striped">
         <thead>
-            <th>Id</th>
             <th>Event Name</th>
             <th>Date</th>
             <th>Timings</th>
@@ -10,7 +9,6 @@
         </thead>
         <tbody>
             <tr *ngFor="let history of list">
-                <td>{{history._id}}</td>
                 <td>{{history.event_name}}</td>
                 <td>{{history.event_date.slice(0,10)}}</td>
                 <td>{{history.event_time}}</td>

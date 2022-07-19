@@ -7,7 +7,6 @@
             <input type="text" id="nameValue" name="nameValue" formControlName="nameValue" placeholder="Enter your Name"> 
             <span *ngIf="nameValue.hasError('required') && nameValue.touched" class="error"><small>nameValue is required</small></span>
             <span *ngIf="nameValue.hasError('pattern')" class="error"><small>nameValue must contain only alphabets</small></span>                           
-
             <br>
     
             <label>Password</label>
@@ -19,7 +18,6 @@
 
               <label>Email ID</label>
               <input type="email" name="email" id="email" formControlName="email" placeholder="Enter your EmailId"> 
-              <!-- <small class="text-danger" [class.d-none]="email.valid || email.untouched">EmailId is required</small> -->
               <span *ngIf="email.hasError('required') && email.touched" class="error"><small>event_name is required</small></span>
               <span *ngIf="email.hasError('pattern')" class="error"><small>Invalid Email Id</small></span>                           
               <br>
@@ -27,9 +25,8 @@
                 
                 <label>Phone</label>
                 <input type="text" name="phone" id="phone" formControlName="phone" placeholder="Enter your Phone Number"> 
-                <!-- <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">Phone number should be 10 digits</small> -->
                 <span *ngIf="phone.hasError('required') && phone.touched" class="error"><small>event_name is required</small></span>
-                <span *ngIf="phone.hasError('pattern')" class="error"><small>Password atleast 8 character,1 lower alpha,1 uppe</small></span>                           
+                <span *ngIf="phone.hasError('pattern')" class="error"><small>1st digit should be 6-9 followed 9 digits</small></span>                           
                 <br>
 
                 

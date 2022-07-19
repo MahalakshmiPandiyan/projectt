@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Features } from '../service/features';
 import { FeaturesService } from '../service/features.service';
 
@@ -14,7 +13,7 @@ export class FeaturesDisplayComponent implements OnInit {
   lengthToken: number=0;
   error: string='';
 
-  constructor(private router:Router,private route: ActivatedRoute,private featureService:FeaturesService) { }
+  constructor(private featureService:FeaturesService) { }
 
   ngOnInit(): void {
     this.featureService.getList().subscribe((res)=>{

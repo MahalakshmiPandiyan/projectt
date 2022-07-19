@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { HistoryService } from '../service/history.service';
 import { History } from '../service/history';
 import { UserService } from '../service/user.service';
@@ -13,7 +13,7 @@ import { UserService } from '../service/user.service';
 export class OrganiserComponent implements OnInit {
 
   list:History[]=[]
-  constructor(private router:Router,private route: ActivatedRoute,private historyService:HistoryService,private userService:UserService) { }
+  constructor(private router:Router,private historyService:HistoryService,private userService:UserService) { }
   role:string=''
   ngOnInit(): void {
     this.role=this.userService.role;

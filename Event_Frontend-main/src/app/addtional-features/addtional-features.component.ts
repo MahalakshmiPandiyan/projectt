@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormArray, FormGroup, NgForm, Validators, PatternValidator, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AppModule } from '../app.module';
 import { Features } from '../service/features';
 import { FeaturesService } from '../service/features.service';
 @Component({
@@ -68,8 +67,8 @@ export class AddtionalFeaturesComponent implements OnInit {
 
     if (!this._id) {
       //Create New User
-      this.features.postDetails(featuresForm.value).subscribe((data) => {
-        this.message = Object.values(data)[1];
+      this.features.postDetails(featuresForm.value).subscribe((data:any) => {
+        this.message = data['message'];
         alert(this.message)
       },
         (err) => {
@@ -80,8 +79,8 @@ export class AddtionalFeaturesComponent implements OnInit {
     }
     else {
       //Update User info
-      this.features.putEvent(featuresForm.value, this._id).subscribe((res) => {
-        this.message1 = Object.values(res)[1];
+      this.features.putEvent(featuresForm.value, this._id).subscribe((res:any) => {
+        this.message1 = res['message'];
         alert(this.message1)
       },
         (err) => {
