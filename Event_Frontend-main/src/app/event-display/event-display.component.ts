@@ -40,7 +40,7 @@ export class EventDisplayComponent implements OnInit {
       this.error = err.message;
       alert(err.error.message)
     });
-    this.router.navigate(['/event_display'])
+    this.router.navigate(['/home'])
   }
   }
 

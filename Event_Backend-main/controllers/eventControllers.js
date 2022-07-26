@@ -26,7 +26,7 @@ class eventController {
                 res.status(200).send(doc)
             }
             else {
-                res.status(404).send("error in get by Id in Features ")
+                res.status(404).send("error in get by Id in event ")
             }
         });
     };

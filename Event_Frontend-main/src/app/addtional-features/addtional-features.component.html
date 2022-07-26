@@ -1,19 +1,18 @@
 <div class="outer">
-    <div class="boder bg-secondary text-white w-50 p-4">
+    <div class="inner text-black  p-3">
         <form [formGroup]="featuresForm">
             <div class="form-group">
-                <label>Additional Features</label><br>
+                <label><strong> Additional Features</strong> </label><br>
                 <input type="text" formControlName="name"  placeholder="Enter Features"> 
                 <span *ngIf="name.hasError('required') && name.touched" class="error"><small>Features is required</small></span>
                 <span *ngIf="name.hasError('pattern')" class="error"><small>Features must contain only alphabets</small></span>           
-             </div>
+             </div><br>
             <div class="form-group">
-                <label>Event Amount</label><br>
+                <label><strong>Event Amount</strong></label><br>
                 <input type="text"  formControlName="amount"  placeholder="Enter amount"> 
                 <span *ngIf="amount.hasError('required') && amount.touched" class="error"><small>Amount is required</small></span><br><br>
                 <span *ngIf="amount.hasError('pattern')" class="error"><small>Amount must contain only numbers</small></span>            
-            </div>
-            <br>
+            </div><br>
             <button (click)="backButton()" type="submit" class="btn btn-primary">Back</button>
             <button (click)="tableDisplay(featuresForm)" [disabled]="featuresForm.invalid" class="login btn btn-primary">Submit</button>
         </form>

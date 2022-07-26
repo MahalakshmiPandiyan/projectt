@@ -19,8 +19,8 @@ export class RegisterComponent implements OnInit {
 
     this.userForm = this.formBuilder.group({
       nameValue:new FormControl('',[Validators.required,Validators.pattern('^[a-zA-Z ]{1,15}$')]),
-      password:new FormControl('',[Validators.required,Validators.pattern('^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$')]),
-      email:new FormControl('',[Validators.required,Validators.pattern('^[a-z0-9]{4,13}@[a-z]+\.[a-z\.]{2,6}$')]),
+      password:new FormControl('',[Validators.required,Validators.pattern('^([A-Z]{1})[a-z0-9]{7,}$')]),
+      email:new FormControl('',[Validators.required,Validators.pattern('^[a-z0-9\.]{4,15}@[a-z]+\.[a-z\.]{2,6}$')]),
       phone:new FormControl('',[Validators.required,Validators.pattern('^[6-9]{1}[0-9]{9}$')])
 
     });

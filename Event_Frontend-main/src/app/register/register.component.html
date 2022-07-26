@@ -12,7 +12,7 @@
             <label>Password</label>
               <input type="password" name="password" formControlName="password" id="password" placeholder="Enter your Password">
               <span *ngIf="password.hasError('required') && password.touched" class="error"><small>event_name is required</small></span>
-              <span *ngIf="password.hasError('pattern')" class="error"><small>Password atleast 8 character,1 lower alpha,1 upper alpha,1 special characters,1 number</small></span>                           
+              <span *ngIf="password.hasError('pattern')" class="error"><small>Password Invalid</small></span>                           
               <br>
 
 

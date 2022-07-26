@@ -8,22 +8,22 @@ import { History } from './history';
 export class HistoryService {
   list: History[] = []
 
-readonly baseUrl='http://localhost:3000/event';
-constructor(private http:HttpClient){}
+  readonly baseUrl = 'http://localhost:3000/event';
+  constructor(private http: HttpClient) { }
 
-getList(){
-  
-  return this.http.get(this.baseUrl);
-}
+  getList() {
 
-postDetails(eventForm:History){
-  return this.http.post(this.baseUrl,eventForm)
-}
-putEvent(eventForm:History,_id:string){
-  return this.http.put(this.baseUrl+`/${_id}`,eventForm)
-}
+    return this.http.get(this.baseUrl);
+  }
 
-getUserId(_id:string){
-  return this.http.get<any>(this.baseUrl+`/${_id}`);
-}
+  postDetails(eventForm: History) {
+    return this.http.post(this.baseUrl, eventForm)
+  }
+  putEvent(eventForm: History, _id: string) {
+    return this.http.put(this.baseUrl + `/${_id}`, eventForm)
+  }
+
+  getUserId(_id: string) {
+    return this.http.get<any>(this.baseUrl + `/${_id}`);
+  }
 }

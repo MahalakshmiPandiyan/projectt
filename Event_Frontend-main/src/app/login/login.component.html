@@ -4,18 +4,16 @@
         <form  #userForm="ngForm">
             <h3>Login</h3>
             <label>Email ID</label>
-              <input type="email" #email="ngModel" class="form-control" pattern="^[a-z0-9]{4,13}@[a-z]+\.[a-z\.]{2,6}$" [class.is-invalid]="email.invalid && email.touched"
+              <input type="email" #email="ngModel" class="form-control" pattern="^[a-z0-9\.]{4,15}@[a-z]+\.[a-z\.]{2,6}$" [class.is-invalid]="email.invalid && email.touched"
                name="email" [(ngModel)]="emailId" placeholder="Enter your Email Id" required> 
               <small class="text-danger" *ngIf="email.errors?.['required']" [class.d-none]="email.valid || email.untouched">EmailId is required </small>
-              <small class="text-danger" *ngIf="email.errors?.['pattern']" [class.d-none]="email.valid || email.untouched">Invalid EmailId</small>
-              <br><br>
+              <small class="text-danger" *ngIf="email.errors?.['pattern']" [class.d-none]="email.valid || email.untouched">Invalid EmailId</small><br><br>
     
             <label>Password</label>
-              <input type="password" #password="ngModel" pattern="^.*(?=.{8,})(?=..*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).*$" class="form-control" required
+              <input type="password" #password="ngModel" pattern="^([A-Z]{1})[a-z0-9]{5,}$" class="form-control" required
               [class.is-invalid]="password.invalid && password.touched"  name="password" [(ngModel)]="passwordValue"  placeholder="Enter your Password">
               <small class="text-danger"  *ngIf="password.errors?.['required']" [class.d-none]="password.valid || password.untouched">password is required</small>
-              <small class="text-danger" *ngIf="password.errors?.['pattern']" [class.d-none]="password.valid || password.untouched">Invalid Password</small>
-              <br><br>
+              <small class="text-danger" *ngIf="password.errors?.['pattern']" [class.d-none]="password.valid || password.untouched">Invalid Password</small><br><br>
 
         <button [disabled]="userForm.form.invalid" (click)="dashBoard(userForm)">Login</button><br>
         <a (click)="register()">New User - Register </a>

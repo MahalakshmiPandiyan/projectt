@@ -29,7 +29,7 @@ class displayEventController {
                 res.status(200).send(doc)
             }
             else {
-                return res.status(404).send("error in get by Id in Features ")
+                return res.status(404).send("error in get by Id in Details ")
             }
         });
 
@@ -42,10 +42,10 @@ class displayEventController {
         });
         displayEvent.save((err, doc) => {
             if (!err) {
-                res.status(200).send({ doc, message: 'Successfully Added New Features!!!!!!!!' })
+                res.status(200).send({ doc, message: 'Successfully Added New Details!!!!!!!!' })
             }
             else {
-                return res.status(404).send("error in post Features ")
+                return res.status(404).send("error in post Details ")
             }
         });
     };
@@ -59,10 +59,10 @@ class displayEventController {
         };
         DisplayEvent.findByIdAndUpdate(req.params.id, { $set: displayEvent }, { new: true }, (err, doc) => {
             if (!err) {
-                res.status(200).send({ doc, message: 'Features are Successfully Updated!!!!!!!!' })
+                res.status(200).send({ doc, message: 'Features are Successfully Details!!!!!!!!' })
             }
             else {
-                return res.status(404).send("error in put Features ")
+                return res.status(404).send("error in put Details ")
             }
         });
     };
@@ -76,7 +76,7 @@ class displayEventController {
                 res.status(200).send(data)
             }
             else {
-                return res.status(404).send("error in delete Features ")
+                return res.status(404).send("error in delete Details ")
             }
         });
     };

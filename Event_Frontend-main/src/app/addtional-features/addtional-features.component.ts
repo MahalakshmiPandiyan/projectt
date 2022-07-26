@@ -89,7 +89,7 @@ export class AddtionalFeaturesComponent implements OnInit {
 
         });
     }
-    this.router.navigate(['/features_display'])
+    this.router.navigate(['/home'])
   }
   featuresValue() {
   }

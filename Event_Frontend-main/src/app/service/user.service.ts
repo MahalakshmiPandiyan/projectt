@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
 import { User } from './user';
 
 @Injectable({
@@ -7,27 +7,26 @@ import { User } from './user';
 })
 export class UserService {
 
-  role:string=''
-  getRole(roleValue:string){
-     this.role=roleValue
-     return this.role;
-  }
-
-  check(){
+  role: string = ''
+  getRole(roleValue: string) {
+    this.role = roleValue
     return this.role;
   }
-  readonly baseUrl="http://localhost:3000/employees";
 
-  constructor(private http:HttpClient){}
+  check() {
+    return this.role;
+  }
+  readonly baseUrl = "http://localhost:3000/employees";
 
-  // postLogin(emp)
+  constructor(private http: HttpClient) { }
 
-getAdmin(email:string){
-    return this.http.get(this.baseUrl+`/${email}`);
 
-}
+  getAdmin(email: string) {
+    return this.http.get(this.baseUrl + `/${email}`);
 
-  getDetails(userForm:User){
-    return this.http.get(this.baseUrl +`/${userForm.email}` + `/${userForm.password}`);
+  }
+
+  getDetails(userForm: User) {
+    return this.http.get(this.baseUrl + `/${userForm.email}` + `/${userForm.password}`);
   }
 }

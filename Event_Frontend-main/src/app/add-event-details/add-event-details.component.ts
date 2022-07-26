@@ -42,7 +42,6 @@ export class AddEventDetailsComponent implements OnInit {
       (err) => {
         this.error = err.message;
         alert(err.error.message)
-
       });
   }
   editFeatures(add_details: display_event) {

@@ -6,28 +6,21 @@ import { Login } from './login';
   providedIn: 'root'
 })
 export class LoginService {
- 
 
-  readonly baseUrl='http://localhost:3000/employees';
 
-  constructor(private http:HttpClient){}
+  readonly baseUrl = 'http://localhost:3000/employees';
+
+  constructor(private http: HttpClient) { }
   // postLogin(emp)
-  getDetails(userForm:Login){
-    return this.http.post(this.baseUrl,userForm)
-
-    // this.name=name;
-    // this.passwordValue=passwordValue;
-    // console.log("name : "+this.name);
-    // console.log("password : "+this.passwordValue);
-
-    // return this.http.post(this.baseUrl ,`/${this.name}` + `/${this.passwordValue}`);
+  getDetails(userForm: Login) {
+    return this.http.post(this.baseUrl, userForm)
   }
 
-loggedIn(){
-  return !!localStorage.getItem('token');
-}
+  loggedIn() {
+    return !!localStorage.getItem('token');
+  }
 
-getToken(){
-  return localStorage.getItem('token');
-}
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }

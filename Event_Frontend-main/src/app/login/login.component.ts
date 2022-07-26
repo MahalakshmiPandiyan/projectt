@@ -39,11 +39,11 @@ export class LoginComponent implements OnInit {
           }
         }
       })
-    }, (err) => {
-      this.error = err.message;
-      alert(err.error.message)
-
-    });
+    })
+    // , (err) => {
+    //   console.log("err.error.message"+err.message);
+    //   alert(err.error.message)
+    // });
 
   }
   register() {

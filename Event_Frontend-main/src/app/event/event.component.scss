@@ -1,8 +1,18 @@
-.outer {
-    margin-top: 50px;
-    margin-left: 400px;
+.inner {
+    margin-top: 100px;
+    margin-left: 410px;
+    width: 550px;
+    opacity: 85%;
+    background-color: rgb(138, 136, 136);
 }
-
+.outer{
+    background-image: url('../../assets/images/pic17.jpg');
+    height: 765px;
+    width: 100%;
+    background-position: center ;
+    background-size: cover;
+    padding: 10px;
+}
 select {
     width: 100%;
     height: 40px;
